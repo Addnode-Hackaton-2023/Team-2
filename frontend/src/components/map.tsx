@@ -1,6 +1,8 @@
-import styles from '../styles/WebMap.module.css';
-import { useEffect, useRef, useState } from 'react';
 import { loadModules } from 'esri-loader';
+import { useEffect, useRef, useState } from 'react';
+import styles from '../styles/WebMap.module.css';
+import { start } from './calculateRoute';
+import { getLocationsAsycn } from './loctatorToAddress';
 
 interface MapProps {
   enableSearch: boolean;
@@ -40,7 +42,14 @@ export default function Map({ enableSearch, searchCallback }: MapProps) {
         center: [18.0649, 59.33258],
         zoom: 13,
       });
-
+      const locations = await getLocationsAsycn(view);
+      view.goTo({
+        center: [locations[0].location.x, locations[0].location.y]
+      })
+      view.when(()=> {
+        locations.length && start(map, locations, view)
+      });
+      console.log(locations);
       if (enableSearch) {
         const searchWidget = new Search({
           view: view,
@@ -60,7 +69,7 @@ export default function Map({ enableSearch, searchCallback }: MapProps) {
 
     if (mapRef.current && !loaded) {
       initializeMap(mapRef.current);
-      setLoaded(true);
+      setLoaded(true);      
     }
 
     return () => {
