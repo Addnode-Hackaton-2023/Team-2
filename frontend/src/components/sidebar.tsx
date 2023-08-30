@@ -10,7 +10,6 @@ export function Sidebar() {
           <SidebarRow text='Dashboard' url={'/'} />
           <SidebarRow text='Förare' url={'/driver'} />
           <SidebarRow text='Karta' url={'/map'} />
-          <SidebarRow text='Mottagare' url={'/recipient'} />
           <SidebarRow text='Stopps' url={'/stops'} />
         </ul>
       </div>
