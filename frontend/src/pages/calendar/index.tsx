@@ -7,7 +7,6 @@ import {
   CalendarDate,
   parseDate,
   isSameDay,
-  compare,
   today,
 } from '@internationalized/date';
 import { addDays, format } from 'date-fns';
@@ -32,10 +31,6 @@ type BookedDrivers = {
 
 function compareDates(a: CalendarDate, b: CalendarDate) {
   return isSameDay(a, b);
-}
-
-function isBeforeToday(date: CalendarDate) {
-  return compare(date, new Date());
 }
 
 function mockBookedDrivers(drivers: Array<Driver>): BookedDrivers {
