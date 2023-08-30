@@ -3,7 +3,13 @@
 import { MOCK_DRIVERS } from '@/mock/MOCK_DRIVERS';
 import { Driver } from '@/types/Driver';
 import { randomChoice } from '@/util/random';
-import { parseDate } from '@internationalized/date';
+import {
+  CalendarDate,
+  parseDate,
+  isSameDay,
+  compare,
+  today,
+} from '@internationalized/date';
 import { addDays, format } from 'date-fns';
 import { useEffect, useState } from 'react';
 import {
@@ -23,6 +29,14 @@ type BookedDrivers = {
     date: Date;
   };
 };
+
+function compareDates(a: CalendarDate, b: CalendarDate) {
+  return isSameDay(a, b);
+}
+
+function isBeforeToday(date: CalendarDate) {
+  return compare(date, new Date());
+}
 
 function mockBookedDrivers(drivers: Array<Driver>): BookedDrivers {
   const bookedDrivers: BookedDrivers = {};
@@ -54,7 +68,7 @@ export default function CalendarPage() {
       return bookedDrivers[dateStr].driverName;
     }
 
-    return '-';
+    return 'Ingen tillsatt';
   }
 
   function bookDriver(driver: Driver) {
@@ -69,7 +83,17 @@ export default function CalendarPage() {
     });
   }
 
+  function isSelectedDriverPlannedForThisDate(driver: Driver) {
+    const check = bookedDrivers[date.toString()];
+    if (check && check.driverName == driver.Namn) {
+      return 'bg-indigo-300';
+    }
+    return '';
+  }
+
   const valueSelected = !!date && drivers && drivers.length;
+  const start = today('UTC');
+  const end = start.cycle('month', 3);
 
   return (
     <>
@@ -77,6 +101,8 @@ export default function CalendarPage() {
         aria-label='Appointment date'
         className={'w-full'}
         value={date}
+        minValue={start}
+        maxValue={end}
         onChange={(date) => setDate(date)}
       >
         <header className='flex flex-row items-center justify-center gap-4 m-4'>
@@ -104,13 +130,15 @@ export default function CalendarPage() {
             )}
           </CalendarGridHeader>
           <CalendarGridBody>
-            {(date) => (
+            {(cellDate) => (
               <CalendarCell
-                date={date}
-                className='h-32 bg-slate-400 border-sky-100 flex flex-col items-center justify-center'
+                date={cellDate}
+                className={`h-32 border border-indigo-600 p-6 shadow-sm ring-1 ring-indigo flex justify-center text-sm flex-col hover:bg-indigo-200 hover:border-indigo-900 ${
+                  compareDates(date, cellDate) ? 'bg-indigo-200' : ''
+                }`}
               >
-                <div className='align-self-start'>{date.toString()}</div>
-                <div>{getDriverForDate(date.toString())}</div>
+                <div className='align-self-start'>{cellDate.toString()}</div>
+                <div>{getDriverForDate(cellDate.toString())}</div>
               </CalendarCell>
             )}
           </CalendarGridBody>
@@ -121,12 +149,14 @@ export default function CalendarPage() {
           <h1 className='text-3xl font-bold pt-8 px-4'>
             Planera förare {date.toString()}
           </h1>
-          <div className='flex flex-row items-center justify-center'>
+          <div className='flex flex-row items-center justify-center m-8'>
             {drivers.map((driver) => {
               return (
                 <div
                   key={driver.DriverId}
-                  className='h-32 w-48 mx-2 bg-slate-400 border-sky-100 rounded flex flex-col justify-center items-center gap-2 text-center'
+                  className={`h-32 w-48 mx-2  border border-indigo-600 p-6 shadow-sm ring-1 ring-indigo rounded flex flex-col justify-center items-center gap-2 text-center ${isSelectedDriverPlannedForThisDate(
+                    driver
+                  )}`}
                 >
                   <span className='font-bold text-lg'>{driver.Namn}</span>
                   <img

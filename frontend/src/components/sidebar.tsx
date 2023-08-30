@@ -37,7 +37,7 @@ function SidebarRow({ text, url, indent }: SidebarRow) {
       <Link
         href={url}
         className={`block rounded-lg ${bg} px-4 py-2 text-sm font-medium text-gray-700 ${
-          indent ? 'pl-4' : 'pl-0'
+          indent ? 'pl-6' : 'pl-2'
         }`}
       >
         {text}
