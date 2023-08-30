@@ -26,7 +26,7 @@ export default function Map() {
         center: [18, 59],
         zoom: 13,
       });
-      const locations = await getLocationsAsycn();
+      const locations = await getLocationsAsycn(view);
       view.goTo({
         center: [locations[0].location.x, locations[0].location.y]
       })
