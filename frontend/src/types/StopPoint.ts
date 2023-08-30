@@ -1,5 +1,7 @@
+import { Brand } from '@/types/Brand';
+
 export interface StopPoint {
   StopPointId: string;
-  BrandId: string;
+  Brand: Brand;
   IsRecipient: boolean;
 }
