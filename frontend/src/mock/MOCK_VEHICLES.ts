@@ -1,3 +1,5 @@
+import { Vehicle } from '@/types/Vehicle';
+
 export function mockVehicles(): Array<Vehicle> {
   return [
     {
