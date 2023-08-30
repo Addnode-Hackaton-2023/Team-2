@@ -1,6 +1,6 @@
 import { StopPointAdress } from '@/types/StopPointAdress';
 
-const STOP_POINT_ADDRESSES: StopPointAdress[] = [
+const MOCK_ADDRESSES: StopPointAdress[] = [
   {
     StopPointAdressId: 'S_ADDRESS_000',
     StopPoint: {
@@ -339,7 +339,7 @@ const STOP_POINT_ADDRESSES: StopPointAdress[] = [
     StopPoint: {
       StopPointId: 'Kyrkan_024',
       Brand: { BrandId: 'KYRKAN', Name: 'Kyrkan' },
-      IsRecipient: false,
+      IsRecipient: true,
     },
     Adress: {
       AdressId: 'ADDRESS_024',
