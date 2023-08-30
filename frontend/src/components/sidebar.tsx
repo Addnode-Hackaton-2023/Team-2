@@ -1,6 +1,5 @@
-import { useRouter } from 'next/router';
-import { useCallback } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export function Sidebar() {
   return (
@@ -26,11 +25,13 @@ interface SidebarRow {
 }
 
 function SidebarRow({ text, url }: SidebarRow) {
+  const { pathname } = useRouter();
+  const bg = pathname === url ? 'bg-gray-300' : 'bg-gray-100';
   return (
     <li>
       <Link
         href={url}
-        className='block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700'
+        className={`block rounded-lg px-4 py-2 text-sm font-medium text-gray-700 ${bg}`}
       >
         {text}
       </Link>
