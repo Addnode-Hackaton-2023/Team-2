@@ -1,6 +1,8 @@
-import styles from '../styles/WebMap.module.css';
-import { useEffect, useRef, useState } from 'react';
 import { loadModules } from 'esri-loader';
+import { useEffect, useRef, useState } from 'react';
+import styles from '../styles/WebMap.module.css';
+import { start } from './calculateRoute';
+import { getLocationsAsycn } from './loctatorToAddress';
 
 export default function Map() {
   const mapRef = useRef<HTMLDivElement>(null);
@@ -21,14 +23,22 @@ export default function Map() {
       view = new MapView({
         map,
         container: mapRef,
-        center: [59, 18],
+        center: [18, 59],
         zoom: 13,
       });
+      const locations = await getLocationsAsycn();
+      view.goTo({
+        center: [locations[0].location.x, locations[0].location.y]
+      })
+      view.when(()=> {
+        locations.length && start(map, locations, view)
+      });
+      console.log(locations);
     };
 
     if (mapRef.current && !loaded) {
       initializeMap(mapRef.current);
-      setLoaded(true);
+      setLoaded(true);      
     }
 
     return () => {
