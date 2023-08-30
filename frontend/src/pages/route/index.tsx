@@ -1,6 +1,3 @@
-import Layout from '@/layout/layout';
-import { ReactElement, useEffect, useRef } from 'react';
-
 export default function RoutePage() {
   return (
     <div>
@@ -8,7 +5,3 @@ export default function RoutePage() {
     </div>
   );
 }
-
-RoutePage.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
-};
