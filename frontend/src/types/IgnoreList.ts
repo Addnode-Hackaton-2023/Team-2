@@ -1,6 +1,8 @@
+import { StopPoint } from '@/types/StopPoint';
+
 export interface IgnoreList {
   IgnoreId: string;
-  StopPointId: string;
+  StopPoint: StopPoint;
   StartDate: Date;
   EndDate: Date;
 }
