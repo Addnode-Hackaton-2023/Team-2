@@ -1,6 +1,6 @@
 import { StopPointAdress } from '@/types/StopPointAdress';
 
-const MOCK_ADDRESSES: StopPointAdress[] = [
+export const MOCK_ADDRESSES: StopPointAdress[] = [
   {
     StopPointAdressId: 'S_ADDRESS_000',
     StopPoint: {

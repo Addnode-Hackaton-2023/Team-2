@@ -3,15 +3,19 @@ import { useRouter } from 'next/router';
 
 export function Sidebar() {
   return (
-    <div className='flex h-screen flex-col justify-between border-e bg-white min-w-fit'>
+    <div className='flex h-full flex-col justify-between bg-white min-w-fit'>
       <div className='px-4 py-6'>
         <SidebarLogo />
         <ul className='mt-6 space-y-1'>
           <SidebarRow text='Dashboard' url={'/'} />
           <SidebarRow text='Förare' url={'/driver'} />
+          <SidebarRow indent text='Boka förare' url={'/calendar'} />
           <SidebarRow text='Karta' url={'/map'} />
           <SidebarRow text='Mottagare' url={'/recipient'} />
+          <SidebarRow indent text='Ny Mottagare' url={'/recipient/add'} />
           <SidebarRow text='Affär' url={'/store'} />
+          <SidebarRow text='Fordon' url={'/vehicle'} />
+          <SidebarRow text='Stopp' url={'/stops'} />
         </ul>
       </div>
       <SidebarUser avatar='' email='user@example.com' name='Example User' />
@@ -22,16 +26,19 @@ export function Sidebar() {
 interface SidebarRow {
   text: string;
   url: string;
+  indent?: boolean;
 }
 
-function SidebarRow({ text, url }: SidebarRow) {
+function SidebarRow({ text, url, indent }: SidebarRow) {
   const { pathname } = useRouter();
   const bg = pathname === url ? 'bg-gray-300' : 'bg-gray-100';
   return (
     <li>
       <Link
         href={url}
-        className={`block rounded-lg px-4 py-2 text-sm font-medium text-gray-700 ${bg}`}
+        className={`block rounded-lg ${bg} px-4 py-2 text-sm font-medium text-gray-700 ${
+          indent ? 'pl-6' : 'pl-2'
+        }`}
       >
         {text}
       </Link>
