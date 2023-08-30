@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Flyt.Models
 {
-    public class Adress
+    public class Driver
     {
-        public int Id { get; set; }
-        public string Text { get; set; }
+        public int Id { get; set; } 
+        public string Name { get; set; }
+        public ICollection<Route> Routes { get; set; }
     }
 }

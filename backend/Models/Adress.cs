@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Flyt.Models
 {
-    public class Vehicle
+    public class Adress
     {
         public int Id { get; set; }
-        public int MaxCargo { get; set; }
+        public string Text { get; set; }
+        public ICollection<StoppointAdress> StoppointAdresses { get; set; }
     }
 }

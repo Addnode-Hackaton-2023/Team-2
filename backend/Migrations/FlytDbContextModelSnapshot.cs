@@ -3,7 +3,6 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,11 +10,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Flyt.Migrations
 {
     [DbContext(typeof(FlytDbContext))]
-    [Migration("20230830121721_Initial")]
-    partial class Initial
+    partial class FlytDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,13 +75,14 @@ namespace Flyt.Migrations
                     b.Property<DateTime>("LeaveTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("RouteId")
+                    b.Property<int?>("RouteId")
                         .HasColumnType("int");
 
                     b.Property<int>("Sequence")
                         .HasColumnType("int");
 
-                    b.Property<int>("StoppointId")
+                    b.Property<int?>("StoppointId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -148,20 +146,20 @@ namespace Flyt.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DriverId")
+                    b.Property<int?>("DriverId")
                         .HasColumnType("int");
 
-                    b.Property<int>("StoppointId")
+                    b.Property<int?>("EndStoppointId")
                         .HasColumnType("int");
 
-                    b.Property<int>("VehicleId")
+                    b.Property<int?>("VehicleId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("DriverId");
 
-                    b.HasIndex("StoppointId");
+                    b.HasIndex("EndStoppointId");
 
                     b.HasIndex("VehicleId");
 
@@ -197,7 +195,7 @@ namespace Flyt.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AdressId")
+                    b.Property<int?>("AdressId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("EndDate")
@@ -237,16 +235,14 @@ namespace Flyt.Migrations
             modelBuilder.Entity("Flyt.Models.Destination", b =>
                 {
                     b.HasOne("Flyt.Models.Route", "Route")
-                        .WithMany()
+                        .WithMany("Destinations")
                         .HasForeignKey("RouteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("Flyt.Models.Stoppoint", "Stoppoint")
-                        .WithMany()
+                        .WithMany("Destinations")
                         .HasForeignKey("StoppointId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Route");
 
@@ -256,9 +252,9 @@ namespace Flyt.Migrations
             modelBuilder.Entity("Flyt.Models.IgnoreList", b =>
                 {
                     b.HasOne("Flyt.Models.Stoppoint", "Stoppoint")
-                        .WithMany()
+                        .WithMany("Ignores")
                         .HasForeignKey("StoppointId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Stoppoint");
@@ -267,26 +263,23 @@ namespace Flyt.Migrations
             modelBuilder.Entity("Flyt.Models.Route", b =>
                 {
                     b.HasOne("Flyt.Models.Driver", "Driver")
-                        .WithMany()
+                        .WithMany("Routes")
                         .HasForeignKey("DriverId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Flyt.Models.Stoppoint", "Stoppoint")
+                    b.HasOne("Flyt.Models.Stoppoint", "EndStoppoint")
                         .WithMany()
-                        .HasForeignKey("StoppointId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EndStoppointId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("Flyt.Models.Vehicle", "Vehicle")
-                        .WithMany()
+                        .WithMany("Routes")
                         .HasForeignKey("VehicleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Driver");
 
-                    b.Navigation("Stoppoint");
+                    b.Navigation("EndStoppoint");
 
                     b.Navigation("Vehicle");
                 });
@@ -294,9 +287,9 @@ namespace Flyt.Migrations
             modelBuilder.Entity("Flyt.Models.Stoppoint", b =>
                 {
                     b.HasOne("Flyt.Models.Brand", "Brand")
-                        .WithMany()
+                        .WithMany("Stoppoints")
                         .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Brand");
@@ -305,20 +298,53 @@ namespace Flyt.Migrations
             modelBuilder.Entity("Flyt.Models.StoppointAdress", b =>
                 {
                     b.HasOne("Flyt.Models.Adress", "Adress")
-                        .WithMany()
+                        .WithMany("StoppointAdresses")
                         .HasForeignKey("AdressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("Flyt.Models.Stoppoint", "Stoppoint")
-                        .WithMany()
+                        .WithMany("Adresses")
                         .HasForeignKey("StoppointId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Adress");
 
                     b.Navigation("Stoppoint");
+                });
+
+            modelBuilder.Entity("Flyt.Models.Adress", b =>
+                {
+                    b.Navigation("StoppointAdresses");
+                });
+
+            modelBuilder.Entity("Flyt.Models.Brand", b =>
+                {
+                    b.Navigation("Stoppoints");
+                });
+
+            modelBuilder.Entity("Flyt.Models.Driver", b =>
+                {
+                    b.Navigation("Routes");
+                });
+
+            modelBuilder.Entity("Flyt.Models.Route", b =>
+                {
+                    b.Navigation("Destinations");
+                });
+
+            modelBuilder.Entity("Flyt.Models.Stoppoint", b =>
+                {
+                    b.Navigation("Adresses");
+
+                    b.Navigation("Destinations");
+
+                    b.Navigation("Ignores");
+                });
+
+            modelBuilder.Entity("Flyt.Models.Vehicle", b =>
+                {
+                    b.Navigation("Routes");
                 });
 #pragma warning restore 612, 618
         }

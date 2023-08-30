@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Flyt.Models
 {
-    public class IgnoreList
+    public class Vehicle
     {
         public int Id { get; set; }
-        public Stoppoint Stoppoint { get; set; }
-        public DateTime StartDate { get; set; } 
-        public DateTime EndDate { get; set; }
+        public int MaxCargo { get; set; }
+        public ICollection<Route> Routes { get; set; }
     }
 }
