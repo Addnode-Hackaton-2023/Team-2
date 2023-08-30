@@ -1,0 +1,31 @@
+{
+	"destinations": 
+	[
+		{
+			"brandId":3,
+			"city":"Stockholm",
+			"zipCode":12345,
+			"StreetAddr":"Storgatan 1"
+		},
+		{
+			"brandId":3,
+			"city":"Stockholm",
+			"zipCode":56789,
+			"StreetAddr":"Lillgatan 2"
+		},
+		{
+			"brandId":14,
+			"city":"Stockholm",
+			"zipCode":99876,
+			"StreetAddr":"Mellangatan 3"
+		}
+	],
+	
+	"endrecepient": 
+	{
+		"name":"Missionskyrkan",
+		"city":"Stockholm",
+		"zipCode":12345,
+		"StreetAddr":"Storgatan 1"
+	}
+}
