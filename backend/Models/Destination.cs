@@ -9,7 +9,9 @@ namespace Flyt.Models
     public class Destination
     {
         public int Id { get; set; }
+        public int? RouteId { get; set; }
         public Route Route { get; set; }
+        public int? StoppointId { get; set; }
         public Stoppoint Stoppoint { get; set; }
         public int Sequence { get; set; }
         public DateTime ETA { get; set; }
