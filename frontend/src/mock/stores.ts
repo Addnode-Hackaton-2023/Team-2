@@ -1,4 +1,5 @@
 import { Driver } from '@/types/Driver';
+import { Vehicle } from '@/types/Vehicle';
 
 export function mockDrivers(): Array<Driver> {
   return [
@@ -17,6 +18,19 @@ export function mockDrivers(): Array<Driver> {
     {
       DriverId: '4',
       Namn: 'Diana',
+    },
+  ];
+}
+
+export function mockVehicles(): Array<Vehicle> {
+  return [
+    {
+      MaxCargo: '200',
+      VehicleId: '1',
+    },
+    {
+      MaxCargo: '250',
+      VehicleId: '2',
     },
   ];
 }
