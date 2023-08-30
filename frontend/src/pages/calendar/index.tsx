@@ -1,6 +1,6 @@
 'use client';
 
-import { mockDrivers } from '@/mock/stores';
+import { MOCK_DRIVERS } from '@/mock/MOCK_DRIVERS';
 import { Driver } from '@/types/Driver';
 import { randomChoice } from '@/util/random';
 import { parseDate } from '@internationalized/date';
@@ -44,7 +44,7 @@ export default function CalendarPage() {
   const [bookedDrivers, setBookedDrivers] = useState<BookedDrivers>({});
 
   useEffect(() => {
-    const drivers = mockDrivers();
+    const drivers = MOCK_DRIVERS;
     setBookedDrivers(mockBookedDrivers(drivers));
     setDrivers(drivers);
   }, []);
