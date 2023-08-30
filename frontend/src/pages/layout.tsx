@@ -6,18 +6,10 @@ export default function Layout({ children }: PropsWithChildren<unknown>) {
   return (
     <div className='flex'>
       <Sidebar />
-      <main className='w-screen'>{children}</main>
+      <main className='w-screen bg-gray-200 text-black'>{children}</main>
     </div>
   );
 }
-
-const PAGES = [
-  { title: 'Home', path: '/' },
-  { title: 'Admin', path: '/admin' },
-  { title: 'Store', path: '/store' },
-  { title: 'Recipient', path: '/recipient' },
-];
-
 const Navbar = () => {
   return (
     <Sidebar />
