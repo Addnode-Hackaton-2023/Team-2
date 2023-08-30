@@ -1,4 +1,4 @@
 export interface Brand {
   BrandId: string;
-  Name: 'LIDL' | 'SJ' | 'KYRKAN';
+  Name: 'Lidl' | 'SJ' | 'Kyrkan';
 }

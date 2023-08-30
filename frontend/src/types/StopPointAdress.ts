@@ -5,6 +5,6 @@ export interface StopPointAdress {
   StopPointAdressId: string;
   StopPoint: StopPoint;
   Adress: Adress;
-  StartDate: Date;
-  EndDate: Date;
+  StartDate: string;
+  EndDate: string;
 }
