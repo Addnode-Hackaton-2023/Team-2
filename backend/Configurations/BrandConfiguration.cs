@@ -5,12 +5,16 @@ using Flyt.Models;
 
 namespace Flyt.Configuration
 {
-    public class RouteConfiguration : IEntityTypeConfiguration<Route>
+    public class BrandConfiguration : IEntityTypeConfiguration<Brand>
     {
-        public void Configure(EntityTypeBuilder<Route> builder)
+        public void Configure(EntityTypeBuilder<Brand> builder)
         {
             builder.Property(a => a.Id)
                 .IsRequired();
+
+            builder.HasMany(b => b.Stoppoints)
+                .WithOne(sp => sp.Brand)
+                .HasForeignKey(b => b.BrandId);
         }
     }
 }

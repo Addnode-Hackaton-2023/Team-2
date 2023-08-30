@@ -79,8 +79,7 @@ namespace Flyt.Migrations
                         name: "FK_Stoppoints_Brands_BrandId",
                         column: x => x.BrandId,
                         principalTable: "Brands",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -100,8 +99,7 @@ namespace Flyt.Migrations
                         name: "FK_IgnoreList_Stoppoints_StoppointId",
                         column: x => x.StoppointId,
                         principalTable: "Stoppoints",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -110,9 +108,9 @@ namespace Flyt.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DriverId = table.Column<int>(type: "int", nullable: false),
-                    VehicleId = table.Column<int>(type: "int", nullable: false),
-                    StoppointId = table.Column<int>(type: "int", nullable: false),
+                    DriverId = table.Column<int>(type: "int", nullable: true),
+                    VehicleId = table.Column<int>(type: "int", nullable: true),
+                    EndStoppointId = table.Column<int>(type: "int", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -122,20 +120,17 @@ namespace Flyt.Migrations
                         name: "FK_Route_Drivers_DriverId",
                         column: x => x.DriverId,
                         principalTable: "Drivers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Route_Stoppoints_StoppointId",
-                        column: x => x.StoppointId,
+                        name: "FK_Route_Stoppoints_EndStoppointId",
+                        column: x => x.EndStoppointId,
                         principalTable: "Stoppoints",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Route_Vehicles_VehicleId",
                         column: x => x.VehicleId,
                         principalTable: "Vehicles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -145,7 +140,7 @@ namespace Flyt.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StoppointId = table.Column<int>(type: "int", nullable: false),
-                    AdressId = table.Column<int>(type: "int", nullable: false),
+                    AdressId = table.Column<int>(type: "int", nullable: true),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -156,14 +151,12 @@ namespace Flyt.Migrations
                         name: "FK_StoppointAdresses_Adresses_AdressId",
                         column: x => x.AdressId,
                         principalTable: "Adresses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_StoppointAdresses_Stoppoints_StoppointId",
                         column: x => x.StoppointId,
                         principalTable: "Stoppoints",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -172,7 +165,7 @@ namespace Flyt.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RouteId = table.Column<int>(type: "int", nullable: false),
+                    RouteId = table.Column<int>(type: "int", nullable: true),
                     StoppointId = table.Column<int>(type: "int", nullable: false),
                     Sequence = table.Column<int>(type: "int", nullable: false),
                     ETA = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -187,14 +180,12 @@ namespace Flyt.Migrations
                         name: "FK_Destinations_Route_RouteId",
                         column: x => x.RouteId,
                         principalTable: "Route",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Destinations_Stoppoints_StoppointId",
                         column: x => x.StoppointId,
                         principalTable: "Stoppoints",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -218,9 +209,9 @@ namespace Flyt.Migrations
                 column: "DriverId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Route_StoppointId",
+                name: "IX_Route_EndStoppointId",
                 table: "Route",
-                column: "StoppointId");
+                column: "EndStoppointId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Route_VehicleId",

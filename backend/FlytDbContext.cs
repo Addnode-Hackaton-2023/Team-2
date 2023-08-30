@@ -23,6 +23,11 @@ public class FlytDbContext : DbContext
         ConnectionString = @"***REMOVED***";
     }
 
+    public FlytDbContext(string connectionString)
+    {
+        this.ConnectionString = connectionString;
+    }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);
