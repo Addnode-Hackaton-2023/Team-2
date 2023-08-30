@@ -3,7 +3,7 @@ import Table, {
   TableBody,
   TableHeader,
 } from '@/components/table';
-import { mockDrivers } from '@/mock/stores';
+import { MOCK_DRIVERS } from '@/mock/MOCK_DRIVERS';
 import { Driver } from '@/types/Driver';
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import { useForm } from 'react-hook-form';
@@ -11,7 +11,7 @@ import { useForm } from 'react-hook-form';
 export const getServerSideProps: GetServerSideProps<{
   drivers: Driver[];
 }> = async () => {
-  return { props: { drivers: mockDrivers() } };
+  return { props: { drivers: MOCK_DRIVERS } };
 };
 
 type DriverForm = {
@@ -26,7 +26,7 @@ export default function DriverPage({
     handleSubmit,
     formState: { errors },
   } = useForm<DriverForm>();
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const onSubmit = handleSubmit((data: any) => console.log(data));
 
   return (
     <div className='p-8'>
