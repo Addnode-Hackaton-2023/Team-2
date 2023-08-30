@@ -8,6 +8,7 @@ import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import { useForm } from 'react-hook-form';
 import { StopPointAdress } from '@/types/StopPointAdress';
 import { Brand } from '@/types/Brand';
+import { useMemo } from 'react';
 
 export const getServerSideProps: GetServerSideProps<{
   stops: StopPointAdress[];
@@ -28,8 +29,16 @@ export default function StoresPage({
   const { register, handleSubmit } = useForm<StoreForm>();
   const onSubmit = handleSubmit((data: any) => console.log(data));
 
+  const STOPS = useMemo(() => {
+    return stops.filter((stop) => !stop.StopPoint.IsRecipient);
+  }, [stops]);
+  const RECIPIENTS = useMemo(() => {
+    return stops.filter((stop) => stop.StopPoint.IsRecipient);
+  }, [stops]);
+
   return (
     <div className='p-8'>
+      <h1 className='text-3xl py-8'>Affärer</h1>
       <Table>
         <thead>
           <tr>
@@ -39,7 +48,23 @@ export default function StoresPage({
           </tr>
         </thead>
         <TableBody>
-          {stops.map((s) => (
+          {STOPS.map((s) => (
+            <StopTableRow key={s.StopPointAdressId} stop={s} />
+          ))}
+        </TableBody>
+      </Table>
+
+      <h1 className='text-3xl py-8'>Mottagare</h1>
+      <Table>
+        <thead>
+          <tr>
+            <TableHeader name={'Brand'} />
+            <TableHeader name={'Address'} />
+            <TableHeader name={'Åtgärder'} />
+          </tr>
+        </thead>
+        <TableBody>
+          {RECIPIENTS.map((s) => (
             <StopTableRow key={s.StopPointAdressId} stop={s} />
           ))}
         </TableBody>
