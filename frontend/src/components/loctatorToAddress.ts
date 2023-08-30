@@ -29,12 +29,14 @@ const addressesList = ["Stockholmsvägen 1, 182 78 Stocksund",
     "Bussens väg 5, 122 43 Enskede",
     "Värmevägen 1A, 177 57 Järfälla"]
 
-export const getLocationsAsycn = async() => {
+export const getLocationsAsycn = async(mapView:any) => {
     const modules = ['esri/rest/locator'];
     const [loctor] = await loadModules(modules);
     const addresses = addressesList.map(x=> ({
         SingleLine: x
       }))
-    const l = await loctor.addressesToLocations(url,{addresses});
+    const l = await loctor.addressesToLocations(url,{addresses, outSpatialReference: {
+        "wkid": mapView.spatialReference.wkid
+      }});
     return l;
 }

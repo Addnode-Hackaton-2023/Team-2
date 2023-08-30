@@ -8,11 +8,7 @@ let depotLocation: any;
 export const start = async (map:any, locations:any, mapView: any) => {
     await createGraphicLayer();
     map.addMany([depotLayer,routeLayer,deliveryLayer]);
-    depotLocation = {
-        type: "point",
-        latitude: locations[0].location.y,
-        longitude:  locations[0].location.x,
-      };
+    depotLocation = locations[0].location;
    const sp =   {
     spatialReference: {
         "wkid": mapView.spatialReference.wkid
@@ -27,9 +23,9 @@ export const start = async (map:any, locations:any, mapView: any) => {
 const createGraphicLayer = async() => {
     const modules = ['esri/layers/GraphicsLayer'];
     const [GraphicsLayer] = await loadModules(modules);
-   depotLayer = new GraphicsLayer();
-  routeLayer = new GraphicsLayer();
-  deliveryLayer = new GraphicsLayer();
+    depotLayer = new GraphicsLayer();
+    routeLayer = new GraphicsLayer();
+    deliveryLayer = new GraphicsLayer();
 }
 
   
@@ -64,25 +60,21 @@ const  showDepot = async(point:any) => {
     const [FeatureSet, geoprocessor] = await loadModules(modules);
     const features = locations.map((l:any)=> ({
         attributes: { Name: l.address, ServiceTime: 10 },
-        geometry: {
-            type: "point",
-            latitude: l.location.y,
-            longitude: l.location.x
-          },
+        geometry: l.location,
     }))
     const orders = new FeatureSet({
         spatialReference: sp,
-      features,
+        features,
     });
 
     const depots = new FeatureSet({
         spatialReference: sp,
-      features: [features[0]]
+        features: [features[0]]
     });
 
     const routes = new FeatureSet({
         spatialReference: sp,
-      features: [
+        features: [
         {
           attributes: {
             Name: "Route 1",
@@ -124,20 +116,18 @@ const  showDepot = async(point:any) => {
     const outStops = results[1].value.features;  // Graphics[]
     const outRoutes = results[2].value.features; // Graphics[]
 
-    showStops(outStops);
+    const firstPoint = locations[0].location;
+
+    showStops(outStops, firstPoint);
     showRoutes(outRoutes);
   }
 
 
-  function showStops(stops: any) {
+  function showStops(stops: any, point: any) {
     for (let stop of stops) {
       const { SnapY, SnapX, RouteName, Sequence} = stop.attributes;
       stop.set({
-        geometry: {
-          type: "point",
-          latitude: SnapY,
-          longitude: SnapX
-        },
+        geometry: point,
         symbol: {
           type: "simple-marker",
           color: [255, 255, 255],
@@ -146,10 +136,6 @@ const  showDepot = async(point:any) => {
             width: 1
           },
           size: "18px"
-        },
-        popupTemplate: {
-          title: "{Name}",
-          content: `${RouteName}<br>Stop: ${parseInt(Sequence) - 1}<br>Delivery Items: 1`
         }
       });
     }
