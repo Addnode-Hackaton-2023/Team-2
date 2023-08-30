@@ -1,9 +1,5 @@
 import Layout from '@/layout/layout';
 import { ReactElement, useEffect, useRef } from 'react';
-import Map from '../../components/map';
-
-import { setDefaultOptions } from 'esri-loader';
-setDefaultOptions({ css: true });
 
 export default function RoutePage() {
   return (
