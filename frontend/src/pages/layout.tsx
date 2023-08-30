@@ -1,5 +1,4 @@
-import { PropsWithChildren, useCallback } from 'react';
-import { useRouter } from 'next/router';
+import { PropsWithChildren } from 'react';
 import { Sidebar } from '@/components/sidebar';
 
 export default function Layout({ children }: PropsWithChildren<unknown>) {
@@ -12,6 +11,3 @@ export default function Layout({ children }: PropsWithChildren<unknown>) {
     </div>
   );
 }
-const Navbar = () => {
-  return <Sidebar />;
-};
