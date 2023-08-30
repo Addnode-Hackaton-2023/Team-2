@@ -2,11 +2,8 @@ import config from '@arcgis/core/config';
 import ArcGISMap from '@arcgis/core/Map';
 import FeatureLayer from '@arcgis/core/layers/FeatureLayer';
 import MapView from '@arcgis/core/views/MapView';
-// import { watch } from '@arcgis/core/core/reactiveUtils';
 import Expand from '@arcgis/core/widgets/Expand';
-
-config.apiKey = process.env.NEXT_PUBLIC_ARCGIS_KEY as string;
-console.log(config.apiKey);
+import Map from '@arcgis/core/Map';
 
 interface MapApp {
   view?: MapView;
@@ -24,11 +21,12 @@ export async function initialize(container: HTMLDivElement, filter: string) {
     app.view.destroy();
   }
 
-  const map = new ArcGISMap({
-    basemap: 'arcgis-dark-gray',
-  });
+  config.apiKey = process.env.NEXT_PUBLIC_ARCGIS_KEY as string;
+  console.log(config.apiKey);
 
-  console.log('test');
+  const map = new Map({
+    basemap: 'arcgis-topographic',
+  });
 
   const view = new MapView({
     map,
@@ -44,20 +42,20 @@ export async function initialize(container: HTMLDivElement, filter: string) {
   //   }
   // );
 
-  view.when(async () => {
-    const element = document.createElement('div');
-    element.classList.add(
-      'esri-component',
-      'esri-widget',
-      'esri-widget--panel',
-      'item-description'
-    );
-    const expand = new Expand({
-      content: element,
-      expandIconClass: 'esri-icon-description',
-    });
-    view.ui.add(expand, 'bottom-right');
-  });
+  // view.when(async () => {
+  //   const element = document.createElement('div');
+  //   element.classList.add(
+  //     'esri-component',
+  //     'esri-widget',
+  //     'esri-widget--panel',
+  //     'item-description'
+  //   );
+  //   const expand = new Expand({
+  //     content: element,
+  //     expandIconClass: 'esri-icon-description',
+  //   });
+  //   view.ui.add(expand, 'bottom-right');
+  // });
 
   app.map = map;
   app.view = view;

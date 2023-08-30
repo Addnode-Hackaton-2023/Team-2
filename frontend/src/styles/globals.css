@@ -1,3 +1,5 @@
+@import url("https://js.arcgis.com/4.22/esri/themes/light/main.css");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -18,17 +20,5 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-#viewDiv {
-  padding: 0;
-  margin: 0;
-  height: 100%;
-  width: 100%;
+  background: rgb(var(--background-start-rgb));
 }
