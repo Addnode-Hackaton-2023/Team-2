@@ -1,30 +1,46 @@
 import styles from '../styles/WebMap.module.css';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { loadModules } from 'esri-loader';
 
-async function loadMap(container: HTMLDivElement, filter: string) {
-  const { initialize } = await import('../../data/mapping');
-  return initialize(container, filter);
-}
-
-const WebMap = () => {
+export default function Map() {
   const mapRef = useRef<HTMLDivElement>(null);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    let asyncCleanup: Promise<() => void>;
-    if (mapRef.current) {
-      console.log('Loading map');
-      asyncCleanup = loadMap(mapRef.current, '');
-    }
-    return () => {
-      asyncCleanup && asyncCleanup.then((cleanup) => cleanup());
+    let view: any;
+
+    const initializeMap = async (mapRef: HTMLDivElement) => {
+      const modules = ['esri/config', 'esri/Map', 'esri/views/MapView'];
+      const [esriConfig, Map, MapView] = await loadModules(modules);
+      esriConfig.apiKey = process.env.NEXT_PUBLIC_ARCGIS_KEY as string;
+
+      const map = new Map({
+        basemap: 'arcgis-topographic',
+      });
+
+      view = new MapView({
+        map,
+        container: mapRef,
+        center: [59, 18],
+        zoom: 13,
+      });
     };
-  }, [mapRef]);
+
+    if (mapRef.current && !loaded) {
+      initializeMap(mapRef.current);
+      setLoaded(true);
+    }
+
+    return () => {
+      if (!loaded && view) {
+        view.destroy();
+      }
+    };
+  }, [mapRef, loaded]);
 
   return (
     <div className={styles.container}>
       <div className={styles.viewDiv} ref={mapRef}></div>
     </div>
   );
-};
-
-export default WebMap;
+}
