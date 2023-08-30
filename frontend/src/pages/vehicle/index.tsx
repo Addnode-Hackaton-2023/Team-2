@@ -1,10 +1,11 @@
+import { PageHeader } from '@/components/pageHeader';
 import Table, {
   DriverTableRow,
   TableBody,
   TableHeader,
   VehicleTableRow,
 } from '@/components/table';
-import { mockVehicles } from '@/mock/stores';
+import { MOCK_VEHICLES } from '@/mock/MOCK_VEHICLES';
 import { Vehicle } from '@/types/Vehicle';
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import { useForm } from 'react-hook-form';
@@ -12,7 +13,7 @@ import { useForm } from 'react-hook-form';
 export const getServerSideProps: GetServerSideProps<{
   vehicles: Vehicle[];
 }> = async () => {
-  return { props: { vehicles: mockVehicles() } };
+  return { props: { vehicles: MOCK_VEHICLES } };
 };
 
 type VehicleForm = {
@@ -31,7 +32,10 @@ export default function VehiclePage({
 
   return (
     <div className='p-8'>
-      <h1 className='text-3xl py-8'>Bilar</h1>
+      <PageHeader
+        subtitle='Här listas alla fordon som finns registrerade i applikationen'
+        title='Fordon'
+      />
       <Table>
         <thead>
           <tr>
@@ -44,7 +48,7 @@ export default function VehiclePage({
           ))}
         </TableBody>
       </Table>
-      <div>
+      <div className='bg-gray-50 my-8 p-8'>
         <h1 className='text-3xl py-8'>Lägg till nytt fordon</h1>
         <form onSubmit={onSubmit}>
           <div className='flex'>

@@ -25,5 +25,10 @@ body {
 
 
 [data-disabled] {
-  background-color: #aaa;
+  background-color: #eee;
+  cursor: not-allowed;
+}
+
+[data-disabled]:hover {
+  background-color: unset !important;
 }

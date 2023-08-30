@@ -1,4 +1,5 @@
 //import { addressToLocations } from "esri/rest/locator/addressToLocations";
+import { Adress } from '@/types/Adress';
 import { loadModules } from 'esri-loader';
 
 const url =
@@ -30,7 +31,7 @@ export type Address = {
 
 const addresses = [
   {
-    original_address: "'Stockholmsvägen 1, 182 78 Stocksund',",
+    original_address: 'Stockholmsvägen 1, 182 78 Stocksund',
     lat: 59.385068399999994,
     lon: 18.045389061780458,
     formatted: 'Lidl, Stockholmsvägen 1, 182 78 Danderyds kommun, Sverige',
@@ -53,7 +54,7 @@ const addresses = [
     attribution_url: 'https://www.openstreetmap.org/copyright',
   },
   {
-    original_address: "'Stockholmsvägen 20, 181 50 Lidingö',",
+    original_address: 'Stockholmsvägen 20, 181 50 Lidingö',
     lat: 59.3633864,
     lon: 18.1237141,
     formatted: 'Stockholmsvägen 20, 181 50 Lidingö, Sverige',
@@ -76,7 +77,7 @@ const addresses = [
     attribution_url: 'https://www.openstreetmap.org/copyright',
   },
   {
-    original_address: "'Enhagsvägen 24, 183 34 Täby',",
+    original_address: 'Enhagsvägen 24, 183 34 Täby',
     lat: 59.44002,
     lon: 18.0350218,
     formatted: 'Enhagsvägen 24, 187 40 Täby, Sverige',
@@ -99,7 +100,7 @@ const addresses = [
     attribution_url: 'https://www.openstreetmap.org/copyright',
   },
   {
-    original_address: "'Sankt Eriksgatan 113, 113 43 Stockholm',",
+    original_address: 'Sankt Eriksgatan 113, 113 43 Stockholm',
     lat: 59.346391,
     lon: 18.03972,
     formatted: 'Sankt Eriksgatan 113, 113 43 Stockholm, Sverige',
@@ -122,7 +123,7 @@ const addresses = [
     attribution_url: '',
   },
   {
-    original_address: "'Bibliotekstorget 2A, 171 45 Solna',",
+    original_address: 'Bibliotekstorget 2A, 171 45 Solna',
     lat: 59.3597727,
     lon: 18.0014895,
     formatted:
@@ -146,7 +147,7 @@ const addresses = [
     attribution_url: 'https://www.openstreetmap.org/copyright',
   },
   {
-    original_address: "'Saluvägen 10, 187 66 Täby',",
+    original_address: 'Saluvägen 10, 187 66 Täby',
     lat: 59.4590591,
     lon: 18.137803,
     formatted: 'Stora Coop, Saluvägen 10, 187 66 Täby kommun, Sverige',
@@ -169,7 +170,7 @@ const addresses = [
     attribution_url: 'https://www.openstreetmap.org/copyright',
   },
   {
-    original_address: "'Sveavägen 59, 113 59 STOCKHOLM',",
+    original_address: 'Sveavägen 59, 113 59 STOCKHOLM',
     lat: 59.3408036,
     lon: 18.0582458,
     formatted: 'Sveavägen 59, 113 59 Stockholm, Sverige',
@@ -192,7 +193,7 @@ const addresses = [
     attribution_url: 'https://www.openstreetmap.org/copyright',
   },
   {
-    original_address: "'Sibyllegatan 8, 114 42 Stockholm',",
+    original_address: 'Sibyllegatan 8, 114 42 Stockholm',
     lat: 59.335928,
     lon: 18.080403,
     formatted: 'Sibyllegatan 6A, 114 42 Stockholm, Sverige',
@@ -215,7 +216,7 @@ const addresses = [
     attribution_url: '',
   },
   {
-    original_address: "'Kista Galleria, 164 91 Kista',",
+    original_address: 'Kista Galleria, 164 91 Kista',
     lat: 59.4034402,
     lon: 17.944066,
     formatted: 'Kista Galleria, Hanstavägen 55F, 164 53 Stockholm, Sverige',
@@ -238,7 +239,7 @@ const addresses = [
     attribution_url: 'https://www.openstreetmap.org/copyright',
   },
   {
-    original_address: "'Landsvägen 47, 172 65 Sundbyberg',",
+    original_address: 'Landsvägen 47, 172 65 Sundbyberg',
     lat: 59.3610101,
     lon: 17.9692108,
     formatted: 'Lidl, Landsvägen 47, 172 65 Sundbybergs kommun, Sverige',
@@ -261,7 +262,7 @@ const addresses = [
     attribution_url: 'https://www.openstreetmap.org/copyright',
   },
   {
-    original_address: "'Sankt Göransgatan 70, 112 38 Stockholm',",
+    original_address: 'Sankt Göransgatan 70, 112 38 Stockholm',
     lat: 59.33331,
     lon: 18.030938,
     formatted: 'Sankt Göransgatan 65, 112 38 Stockholm, Sverige',
@@ -284,7 +285,7 @@ const addresses = [
     attribution_url: '',
   },
   {
-    original_address: "'Djupdalsvägen 29, 192 73 Sollentuna',",
+    original_address: 'Djupdalsvägen 29, 192 73 Sollentuna',
     lat: 59.4453632,
     lon: 17.9504741,
     formatted: 'Djupdalsvägen, 192 54 Sollentuna kommun, Sverige',
@@ -307,7 +308,7 @@ const addresses = [
     attribution_url: 'https://www.openstreetmap.org/copyright',
   },
   {
-    original_address: "'Tistelvägen 21, 191 62 Sollentuna',",
+    original_address: 'Tistelvägen 21, 191 62 Sollentuna',
     lat: 59.4302914,
     lon: 17.936616090237358,
     formatted: 'Lidl, Tistelvägen 21, 191 63 Sollentuna kommun, Sverige',
@@ -330,7 +331,7 @@ const addresses = [
     attribution_url: 'https://www.openstreetmap.org/copyright',
   },
   {
-    original_address: "'Rinkebytorget 1, 163 73 Spånga',",
+    original_address: 'Rinkebytorget 1, 163 73 Spånga',
     lat: 59.381807,
     lon: 17.894363,
     formatted: 'Spånga, Stockholm, Sverige',
@@ -353,7 +354,7 @@ const addresses = [
     attribution_url: 'https://www.whosonfirst.org/docs/licenses/',
   },
   {
-    original_address: "'Folkungagatan 51, 116 22 Stockholm',",
+    original_address: 'Folkungagatan 51, 116 22 Stockholm',
     lat: 59.3144817,
     lon: 18.0747498,
     formatted: 'Folkungagatan 51, 116 22 Stockholm, Sverige',
@@ -376,7 +377,7 @@ const addresses = [
     attribution_url: 'https://www.openstreetmap.org/copyright',
   },
   {
-    original_address: "'Villmanstrandsgatan 6, 164 73 Kista',",
+    original_address: 'Villmanstrandsgatan 6, 164 73 Kista',
     lat: 59.4129253,
     lon: 17.918273,
     formatted: 'Villmanstrandsgatan, 164 73 Stockholm, Sverige',
@@ -399,7 +400,7 @@ const addresses = [
     attribution_url: 'https://www.openstreetmap.org/copyright',
   },
   {
-    original_address: "'Magnus Ladulåsgatan 3, 118 65 Stockholm',",
+    original_address: 'Magnus Ladulåsgatan 3, 118 65 Stockholm',
     lat: 59.311827,
     lon: 18.059796,
     formatted: 'Magnus Ladulåsgatan 5, 118 65 Stockholm, Sverige',
@@ -422,7 +423,7 @@ const addresses = [
     attribution_url: '',
   },
   {
-    original_address: "'Bromstensvägen 158, 163 55 Spånga',",
+    original_address: 'Bromstensvägen 158, 163 55 Spånga',
     lat: 59.378074,
     lon: 17.907764,
     formatted: 'Bromstensvägen 158, 163 55 Stockholm, Sverige',
@@ -445,7 +446,7 @@ const addresses = [
     attribution_url: '',
   },
   {
-    original_address: "'Liljeholmstorget 44, 117 61 Stockholm',",
+    original_address: 'Liljeholmstorget 44, 117 61 Stockholm',
     lat: 59.3100245,
     lon: 18.0232974,
     formatted: 'Liljeholmstorget 44, 117 43 Stockholm, Sverige',
@@ -468,7 +469,7 @@ const addresses = [
     attribution_url: 'https://www.openstreetmap.org/copyright',
   },
   {
-    original_address: "'Hammarby allé 118, 120 65 Stockholm',",
+    original_address: 'Hammarby allé 118, 120 65 Stockholm',
     lat: 59.302115,
     lon: 18.102116,
     formatted: 'Hammarby Allé 120, 120 65 Stockholm, Sverige',
@@ -491,7 +492,7 @@ const addresses = [
     attribution_url: '',
   },
   {
-    original_address: "'Värmdövägen 691, 132 35 Saltsjö-Boo',",
+    original_address: 'Värmdövägen 691, 132 35 Saltsjö-Boo',
     lat: 59.3261038,
     lon: 18.2738145,
     formatted: 'Värmdövägen, 132 35 Boo, Sverige',
@@ -514,7 +515,7 @@ const addresses = [
     attribution_url: 'https://www.openstreetmap.org/copyright',
   },
   {
-    original_address: "'Enköpingsvägen 26B, 177 45 Järfälla',",
+    original_address: 'Enköpingsvägen 26B, 177 45 Järfälla',
     lat: 59.410246,
     lon: 17.8624445,
     formatted: 'Lidl, Enköpingsvägen 26 B, 177 45 Järfälla kommun, Sverige',
@@ -537,7 +538,7 @@ const addresses = [
     attribution_url: 'https://www.openstreetmap.org/copyright',
   },
   {
-    original_address: "'Årevägen 32, 162 61 Vällingby',",
+    original_address: 'Årevägen 32, 162 61 Vällingby',
     lat: 59.360721,
     lon: 17.876058,
     formatted: 'Årevägen 32, 162 65 Stockholms kommun, Sverige',
@@ -560,7 +561,7 @@ const addresses = [
     attribution_url: '',
   },
   {
-    original_address: "'Bussens väg 5, 122 43 Enskede',",
+    original_address: 'Bussens väg 5, 122 43 Enskede',
     lat: 59.2850686,
     lon: 18.051063160321945,
     formatted: 'Lidl, Bussens väg 5, 122 43 Stockholm, Sverige',
@@ -583,7 +584,7 @@ const addresses = [
     attribution_url: 'https://www.openstreetmap.org/copyright',
   },
   {
-    original_address: "'Värmevägen 1A, 177 57 Järfälla',",
+    original_address: 'Värmevägen 1A, 177 57 Järfälla',
     lat: 59.4279679,
     lon: 17.846941,
     formatted: 'Värmevägen, 177 37 Järfälla kommun, Sverige',
@@ -609,20 +610,15 @@ const addresses = [
 
 export const getLocationsAsycn = (): Array<Address> => {
   return addresses;
-  // const modules = ['esri/rest/locator'];
-  // const [loctor] = await loadModules(modules);
-  // const addresses = addressesList.map((x) => ({
-  //   SingleLine: x,
-  // }));
-  // const l = await loctor.addressesToLocations(url, {
-  //   addresses,
-  //   outSpatialReference: {
-  //     wkid: mapView.spatialReference.wkid,
-  //   },
-  //   forStorage: false,
-  // });
-  // return l;
 };
+
+export function addressByName(name: Adress): Address | null {
+  const exists = addresses.find((a) => a.original_address === name.Adress);
+  if (!exists) {
+    return null;
+  }
+  return exists;
+}
 
 export function addressToPoint(address: Address) {
   return {

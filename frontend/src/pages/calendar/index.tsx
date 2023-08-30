@@ -129,7 +129,9 @@ export default function CalendarPage() {
               <CalendarCell
                 date={cellDate}
                 className={`h-32 border border-indigo-600 p-6 shadow-sm ring-1 ring-indigo flex justify-center text-sm flex-col hover:bg-indigo-200 hover:border-indigo-900 ${
-                  compareDates(date, cellDate) ? 'bg-indigo-200' : ''
+                  compareDates(date, cellDate)
+                    ? 'bg-indigo-200'
+                    : 'bg-indigo-100'
                 }`}
               >
                 <div className='align-self-start'>{cellDate.toString()}</div>

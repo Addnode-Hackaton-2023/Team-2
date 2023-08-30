@@ -1,11 +1,10 @@
 import { loadModules } from 'esri-loader';
 import { useEffect, useRef, useState } from 'react';
 import styles from '../styles/WebMap.module.css';
-import { start } from './calculateRoute';
 import { addressToPoint, getLocationsAsycn } from './loctatorToAddress';
 
 interface MapProps {
-  enableSearch: boolean;
+  enableSearch?: boolean;
   searchCallback?: (search: SearchResult) => void;
   enableLocations?: boolean;
   showPoints?: boolean;
@@ -111,11 +110,12 @@ export default function Map({
         view.destroy();
       }
     };
+    // Some properties are intentionally left out, because we don't care if they change.
   }, [mapRef, loaded, enableSearch]);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.viewDiv} ref={mapRef}></div>
+    <div className={'w-full h-screen p-0 flex fixed'}>
+      <div className={'h-full w-full'} ref={mapRef}></div>
     </div>
   );
 }

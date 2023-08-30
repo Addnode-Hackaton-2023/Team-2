@@ -40,6 +40,34 @@ export function StopTableRow({ stop }: { stop: StopPointAdress }) {
   );
 }
 
+export function SelectableStopTableRow({
+  stop,
+  onSelect,
+  value,
+}: {
+  stop: StopPointAdress;
+  onSelect: (stop: StopPointAdress) => void;
+  value: boolean;
+}) {
+  return (
+    <tr>
+      <td className='whitespace-nowrap px-4 py-2'>
+        <input
+          type='checkbox'
+          checked={value}
+          onChange={(e) => onSelect(stop)}
+        />
+      </td>
+      <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>
+        {stop.StopPoint.Brand.Name}
+      </td>
+      <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>
+        {stop.Adress.Adress}
+      </td>
+    </tr>
+  );
+}
+
 export default function Table({ children }: { children: JSX.Element[] }) {
   return (
     <div className='overflow-x-auto'>

@@ -29,7 +29,8 @@ export function DriverTableRow({ driver }: { driver: Driver }) {
         </Link>
         <button
           type={'button'}
-          className='inline-ml-auto rounded bg-red-500 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700'
+          disabled
+          className='inline-ml-auto rounded bg-red-500 px-4 py-2 text-xs font-medium text-white pointer'
         >
           Ta bort Förare
         </button>

@@ -23,8 +23,8 @@ export default function RecipientPage() {
   );
   return (
     <div>
-      <div className='grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8'>
-        <div className='p-8'>
+      <div className='grid grid-cols-1 lg:grid-cols-2'>
+        <div className='bg-gray-50 my-8 p-8'>
           <h1 className='text-3xl font-bold'>Skapa ny mottagare</h1>
           <form onSubmit={onSubmit}>
             <div className='flex'>
