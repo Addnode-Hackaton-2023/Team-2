@@ -11,6 +11,11 @@ namespace Flyt.Configuration
         {
             builder.Property(a => a.Id)
                 .IsRequired();
+
+            builder.HasOne(i => i.Stoppoint)
+                .WithMany(sp => sp.Ignores)
+                .HasForeignKey(i => i.StoppointId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

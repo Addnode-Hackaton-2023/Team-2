@@ -5,15 +5,16 @@ using Flyt.Models;
 
 namespace Flyt.Configuration
 {
-    public class AdressConfiguration : IEntityTypeConfiguration<Adress>
+    public class VehicleConfiguration : IEntityTypeConfiguration<Vehicle>
     {
-        public void Configure(EntityTypeBuilder<Adress> builder)
+        public void Configure(EntityTypeBuilder<Vehicle> builder)
         {
             builder.Property(a => a.Id)
                 .IsRequired();
 
-            builder.Property(a => a.Text) 
-                .IsRequired();
+            builder.HasMany(v => v.Routes)
+                    .WithOne(r => r.Vehicle)
+                    .HasForeignKey(v => v.VehicleId);
         }
     }
 }

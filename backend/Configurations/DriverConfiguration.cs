@@ -11,6 +11,10 @@ namespace Flyt.Configuration
         {
             builder.Property(a => a.Id)
                 .IsRequired();
+
+            builder.HasMany(d => d.Routes)
+                .WithOne(r => r.Driver)
+                .HasForeignKey(d => d.DriverId);
         }
     }
 }
