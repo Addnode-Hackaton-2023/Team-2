@@ -11,7 +11,7 @@ export function Sidebar() {
           <SidebarRow text='Förare' url={'/driver'} />
           <SidebarRow text='Karta' url={'/map'} />
           <SidebarRow text='Mottagare' url={'/recipient'} />
-          <SidebarRow text='Affär' url={'/store'} />
+          <SidebarRow text='Stopps' url={'/stops'} />
         </ul>
       </div>
       <SidebarUser avatar='' email='user@example.com' name='Example User' />
