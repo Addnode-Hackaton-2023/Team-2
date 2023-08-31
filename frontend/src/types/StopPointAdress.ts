@@ -7,4 +7,8 @@ export interface StopPointAdress {
   Adress: Adress;
   StartDate: string;
   EndDate: string;
+  coordinates?: {
+    lat?: number;
+    long?: number;
+  };
 }

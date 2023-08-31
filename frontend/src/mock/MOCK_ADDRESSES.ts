@@ -14,6 +14,7 @@ export const MOCK_ADDRESSES: StopPointAdress[] = [
     },
     StartDate: '2023-05-01T00:00:00.000Z',
     EndDate: '2023-12-01T00:00:00.000Z',
+    coordinates: { lat: 59.385068399999994, long: 18.045389061780458 },
   },
   {
     StopPointAdressId: 'S_ADDRESS_001',
@@ -28,6 +29,7 @@ export const MOCK_ADDRESSES: StopPointAdress[] = [
     },
     StartDate: '2023-05-01T00:00:00.000Z',
     EndDate: '2023-12-01T00:00:00.000Z',
+    coordinates: { lat: 59.3633864, long: 18.1237141 },
   },
   {
     StopPointAdressId: 'S_ADDRESS_002',
@@ -36,12 +38,10 @@ export const MOCK_ADDRESSES: StopPointAdress[] = [
       Brand: { BrandId: 'LIDL', Name: 'Lidl' },
       IsRecipient: false,
     },
-    Adress: {
-      AdressId: 'ADDRESS_002',
-      Adress: 'Enhagsvägen 24, 183 34 Täby',
-    },
+    Adress: { AdressId: 'ADDRESS_002', Adress: 'Enhagsvägen 24, 183 34 Täby' },
     StartDate: '2023-05-02T00:00:00.000Z',
     EndDate: '2023-12-02T00:00:00.000Z',
+    coordinates: { lat: 59.44002, long: 18.0350218 },
   },
   {
     StopPointAdressId: 'S_ADDRESS_003',
@@ -56,6 +56,7 @@ export const MOCK_ADDRESSES: StopPointAdress[] = [
     },
     StartDate: '2023-05-03T00:00:00.000Z',
     EndDate: '2023-12-03T00:00:00.000Z',
+    coordinates: { lat: 59.346391, long: 18.03972 },
   },
   {
     StopPointAdressId: 'S_ADDRESS_004',
@@ -70,6 +71,7 @@ export const MOCK_ADDRESSES: StopPointAdress[] = [
     },
     StartDate: '2023-05-04T00:00:00.000Z',
     EndDate: '2023-12-04T00:00:00.000Z',
+    coordinates: { lat: 59.3597727, long: 18.0014895 },
   },
   {
     StopPointAdressId: 'S_ADDRESS_005',
@@ -81,6 +83,7 @@ export const MOCK_ADDRESSES: StopPointAdress[] = [
     Adress: { AdressId: 'ADDRESS_005', Adress: 'Saluvägen 10, 187 66 Täby' },
     StartDate: '2023-05-05T00:00:00.000Z',
     EndDate: '2023-12-05T00:00:00.000Z',
+    coordinates: { lat: 59.4590591, long: 18.137803 },
   },
   {
     StopPointAdressId: 'S_ADDRESS_006',
@@ -95,6 +98,7 @@ export const MOCK_ADDRESSES: StopPointAdress[] = [
     },
     StartDate: '2023-05-06T00:00:00.000Z',
     EndDate: '2023-12-06T00:00:00.000Z',
+    coordinates: { lat: 59.3408036, long: 18.0582458 },
   },
   {
     StopPointAdressId: 'S_ADDRESS_007',
@@ -109,6 +113,7 @@ export const MOCK_ADDRESSES: StopPointAdress[] = [
     },
     StartDate: '2023-05-07T00:00:00.000Z',
     EndDate: '2023-12-07T00:00:00.000Z',
+    coordinates: { lat: 59.335928, long: 18.080403 },
   },
   {
     StopPointAdressId: 'S_ADDRESS_008',
@@ -117,12 +122,10 @@ export const MOCK_ADDRESSES: StopPointAdress[] = [
       Brand: { BrandId: 'LIDL', Name: 'Lidl' },
       IsRecipient: false,
     },
-    Adress: {
-      AdressId: 'ADDRESS_008',
-      Adress: 'Kista Galleria, 164 91 Kista',
-    },
+    Adress: { AdressId: 'ADDRESS_008', Adress: 'Kista Galleria, 164 91 Kista' },
     StartDate: '2023-05-08T00:00:00.000Z',
     EndDate: '2023-12-08T00:00:00.000Z',
+    coordinates: { lat: 59.4034402, long: 17.944066 },
   },
   {
     StopPointAdressId: 'S_ADDRESS_009',
@@ -137,6 +140,7 @@ export const MOCK_ADDRESSES: StopPointAdress[] = [
     },
     StartDate: '2023-05-09T00:00:00.000Z',
     EndDate: '2023-12-09T00:00:00.000Z',
+    coordinates: { lat: 59.3610101, long: 17.9692108 },
   },
   {
     StopPointAdressId: 'S_ADDRESS_010',
@@ -151,6 +155,7 @@ export const MOCK_ADDRESSES: StopPointAdress[] = [
     },
     StartDate: '2023-05-10T00:00:00.000Z',
     EndDate: '2023-12-10T00:00:00.000Z',
+    coordinates: { lat: 59.33331, long: 18.030938 },
   },
   {
     StopPointAdressId: 'S_ADDRESS_011',
@@ -165,6 +170,7 @@ export const MOCK_ADDRESSES: StopPointAdress[] = [
     },
     StartDate: '2023-05-11T00:00:00.000Z',
     EndDate: '2023-12-11T00:00:00.000Z',
+    coordinates: { lat: 59.4453632, long: 17.9504741 },
   },
   {
     StopPointAdressId: 'S_ADDRESS_012',
@@ -179,6 +185,7 @@ export const MOCK_ADDRESSES: StopPointAdress[] = [
     },
     StartDate: '2023-05-12T00:00:00.000Z',
     EndDate: '2023-12-12T00:00:00.000Z',
+    coordinates: { lat: 59.4302914, long: 17.936616090237358 },
   },
   {
     StopPointAdressId: 'S_ADDRESS_013',
@@ -193,6 +200,7 @@ export const MOCK_ADDRESSES: StopPointAdress[] = [
     },
     StartDate: '2023-05-13T00:00:00.000Z',
     EndDate: '2023-12-13T00:00:00.000Z',
+    coordinates: { lat: 59.381807, long: 17.894363 },
   },
   {
     StopPointAdressId: 'S_ADDRESS_014',
@@ -207,6 +215,7 @@ export const MOCK_ADDRESSES: StopPointAdress[] = [
     },
     StartDate: '2023-05-14T00:00:00.000Z',
     EndDate: '2023-12-14T00:00:00.000Z',
+    coordinates: { lat: 59.3144817, long: 18.0747498 },
   },
   {
     StopPointAdressId: 'S_ADDRESS_015',
@@ -221,6 +230,7 @@ export const MOCK_ADDRESSES: StopPointAdress[] = [
     },
     StartDate: '2023-05-15T00:00:00.000Z',
     EndDate: '2023-12-15T00:00:00.000Z',
+    coordinates: { lat: 59.4129253, long: 17.918273 },
   },
   {
     StopPointAdressId: 'S_ADDRESS_016',
@@ -235,6 +245,7 @@ export const MOCK_ADDRESSES: StopPointAdress[] = [
     },
     StartDate: '2023-05-16T00:00:00.000Z',
     EndDate: '2023-12-16T00:00:00.000Z',
+    coordinates: { lat: 59.311827, long: 18.059796 },
   },
   {
     StopPointAdressId: 'S_ADDRESS_017',
@@ -249,6 +260,7 @@ export const MOCK_ADDRESSES: StopPointAdress[] = [
     },
     StartDate: '2023-05-17T00:00:00.000Z',
     EndDate: '2023-12-17T00:00:00.000Z',
+    coordinates: { lat: 59.378074, long: 17.907764 },
   },
   {
     StopPointAdressId: 'S_ADDRESS_018',
@@ -263,6 +275,7 @@ export const MOCK_ADDRESSES: StopPointAdress[] = [
     },
     StartDate: '2023-05-18T00:00:00.000Z',
     EndDate: '2023-12-18T00:00:00.000Z',
+    coordinates: { lat: 59.3100245, long: 18.0232974 },
   },
   {
     StopPointAdressId: 'S_ADDRESS_019',
@@ -277,6 +290,7 @@ export const MOCK_ADDRESSES: StopPointAdress[] = [
     },
     StartDate: '2023-05-19T00:00:00.000Z',
     EndDate: '2023-12-19T00:00:00.000Z',
+    coordinates: { lat: 59.302115, long: 18.102116 },
   },
   {
     StopPointAdressId: 'S_ADDRESS_020',
@@ -291,6 +305,7 @@ export const MOCK_ADDRESSES: StopPointAdress[] = [
     },
     StartDate: '2023-05-20T00:00:00.000Z',
     EndDate: '2023-12-20T00:00:00.000Z',
+    coordinates: { lat: 59.3261038, long: 18.2738145 },
   },
   {
     StopPointAdressId: 'S_ADDRESS_021',
@@ -305,6 +320,7 @@ export const MOCK_ADDRESSES: StopPointAdress[] = [
     },
     StartDate: '2023-05-21T00:00:00.000Z',
     EndDate: '2023-12-21T00:00:00.000Z',
+    coordinates: { lat: 59.410246, long: 17.8624445 },
   },
   {
     StopPointAdressId: 'S_ADDRESS_022',
@@ -319,6 +335,7 @@ export const MOCK_ADDRESSES: StopPointAdress[] = [
     },
     StartDate: '2023-05-22T00:00:00.000Z',
     EndDate: '2023-12-22T00:00:00.000Z',
+    coordinates: { lat: 59.360721, long: 17.876058 },
   },
   {
     StopPointAdressId: 'S_ADDRESS_023',
@@ -333,6 +350,7 @@ export const MOCK_ADDRESSES: StopPointAdress[] = [
     },
     StartDate: '2023-05-23T00:00:00.000Z',
     EndDate: '2023-12-23T00:00:00.000Z',
+    coordinates: { lat: 59.2850686, long: 18.051063160321945 },
   },
   {
     StopPointAdressId: 'S_ADDRESS_024',
@@ -347,5 +365,6 @@ export const MOCK_ADDRESSES: StopPointAdress[] = [
     },
     StartDate: '2023-05-24T00:00:00.000Z',
     EndDate: '2023-12-24T00:00:00.000Z',
+    coordinates: { lat: 59.4279679, long: 17.846941 },
   },
 ];

@@ -7,6 +7,7 @@ import { MOCK_ADDRESSES } from '@/mock/MOCK_ADDRESSES';
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import { StopPointAdress } from '@/types/StopPointAdress';
 import { PageHeader } from '@/components/pageHeader';
+import { StupidMap } from '@/components/stupidmap';
 
 export const getServerSideProps: GetServerSideProps<{
   donors: StopPointAdress[];
@@ -24,20 +25,24 @@ export default function StoresPage({
         title='Donatorer'
         subtitle='Denna sida listar alla de donatorer som finns registrerade'
       />
-      <Table>
-        <thead>
-          <tr>
-            <TableHeader name={'Donator'} />
-            <TableHeader name={'Address'} />
-            <TableHeader name={'Åtgärder'} />
-          </tr>
-        </thead>
-        <TableBody>
-          {donors.map((s) => (
-            <StopTableRow key={s.StopPointAdressId} stop={s} />
-          ))}
-        </TableBody>
-      </Table>
+
+      <div className='flex flex-col lg:flex-row gap-8'>
+        <Table>
+          <thead>
+            <tr>
+              <TableHeader name={'Donator'} />
+              <TableHeader name={'Address'} />
+              <TableHeader name={'Åtgärder'} />
+            </tr>
+          </thead>
+          <TableBody>
+            {donors.map((s) => (
+              <StopTableRow key={s.StopPointAdressId} stop={s} />
+            ))}
+          </TableBody>
+        </Table>
+        <StupidMap locations={donors} />
+      </div>
     </div>
   );
 }
