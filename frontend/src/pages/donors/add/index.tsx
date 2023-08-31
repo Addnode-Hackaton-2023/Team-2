@@ -101,12 +101,7 @@ export default function RecipientPage() {
           </form>
         </div>
         <div>
-          <Map
-            enableSearch
-            searchCallback={searchCallback}
-            enableLocations
-            showPoints
-          />
+          <Map enableSearch searchCallback={searchCallback} />
         </div>
       </div>
     </div>
