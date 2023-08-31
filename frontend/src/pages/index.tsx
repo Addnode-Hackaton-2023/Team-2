@@ -5,9 +5,12 @@ const inter = Inter({ subsets: ['latin'] });
 export default function Home() {
   return (
     <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
+      className={`flex min-h-screen flex-col gap-3 items-center p-24 ${inter.className}`}
     >
-      <h1>Team Flyt</h1>
+      <h1 className='border-4 border-black pl-6 pr-10 py-4 text-blue-600 text-8xl italic font-bold'>
+        FLYT
+      </h1>
+      <div>Fleet Management Tool™</div>
     </main>
   );
 }
