@@ -72,7 +72,7 @@ export function SelectableStopTableRow({
 
 export default function Table({ children }: { children: JSX.Element[] }) {
   return (
-    <div className='overflow-x-auto'>
+    <div className='overflow-x-auto flex-shrink-0'>
       <table className='min-w-full divide-y-2 divide-gray-200 bg-white text-sm'>
         {children}
       </table>

@@ -7,6 +7,7 @@ import { MOCK_ADDRESSES } from '@/mock/MOCK_ADDRESSES';
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import { StopPointAdress } from '@/types/StopPointAdress';
 import { PageHeader } from '@/components/pageHeader';
+import { StupidMap } from '@/components/stupidmap';
 
 export const getServerSideProps: GetServerSideProps<{
   recipients: StopPointAdress[];
@@ -24,20 +25,24 @@ export default function RecipientsPage({
         title='Mottagare'
         subtitle='Denna sida listar alla de mottagare som finns registrerade'
       />
-      <Table>
-        <thead>
-          <tr>
-            <TableHeader name={'Mottagare'} />
-            <TableHeader name={'Address'} />
-            <TableHeader name={'Åtgärder'} />
-          </tr>
-        </thead>
-        <TableBody>
-          {recipients.map((r) => (
-            <StopTableRow key={r.StopPointAdressId} stop={r} />
-          ))}
-        </TableBody>
-      </Table>
+
+      <div className='flex flex-col lg:flex-row gap-8'>
+        <Table>
+          <thead>
+            <tr>
+              <TableHeader name={'Mottagare'} />
+              <TableHeader name={'Address'} />
+              <TableHeader name={'Åtgärder'} />
+            </tr>
+          </thead>
+          <TableBody>
+            {recipients.map((r) => (
+              <StopTableRow key={r.StopPointAdressId} stop={r} />
+            ))}
+          </TableBody>
+        </Table>
+        <StupidMap locations={recipients} center={[17.846941, 59.4279679]} />
+      </div>
     </div>
   );
 }
