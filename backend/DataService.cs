@@ -34,11 +34,9 @@ namespace Flyt
             if (connectionString == null)
                 throw new ArgumentNullException(nameof(connectionString));
 
-            using (FlytDbContext context = new FlytDbContext(connectionString))
-            {
-                var vehicles = context.Vehicles.ToList();
-                return vehicles;
-            }
+            using FlytDbContext context = new(connectionString);
+            var vehicles = context.Vehicles.ToList();
+            return vehicles;
         }
 
         public int UpdateVehicle(IEnumerable<Vehicle> vehicles)
@@ -46,17 +44,23 @@ namespace Flyt
             if (connectionString == null)
                 throw new ArgumentNullException(nameof(connectionString));
 
-            using (FlytDbContext context = new FlytDbContext(connectionString))
+            using FlytDbContext context = new(connectionString);
+            try
             {
                 List<Vehicle> vehiclesToSave = context.Vehicles
-                                                .Where(v1 => vehicles.Select(v => v.Id)
-                                                                    .Contains(v1.Id)).ToList();
+                                            .Where(v1 => vehicles.Select(v => v.Id)
+                                                                .Contains(v1.Id)).ToList();
                 foreach (Vehicle vehicle in vehicles)
                 {
-                    Vehicle vehicleToSave = vehiclesToSave.Single(v1 => v1.Id == vehicle.Id)
+                    Vehicle vehicleToSave = vehiclesToSave.Single(v1 => v1.Id == vehicle.Id);
                     vehicleToSave.MaxCargo = vehicle.MaxCargo;
                 }
-                
+                return 0;
+            }
+            catch
+            {
+                return 1;
+
             }
         }
 
@@ -65,11 +69,9 @@ namespace Flyt
             if (connectionString == null)
                 throw new ArgumentNullException(nameof(connectionString));
 
-            using (FlytDbContext context = new FlytDbContext(connectionString))
-            {
-                var drivers = context.Drivers.ToList();
-                return drivers;
-            }
+            using FlytDbContext context = new(connectionString);
+            var drivers = context.Drivers.ToList();
+            return drivers;
         }
 
         public int UpdateDriver(IEnumerable<Driver> drivers)
@@ -77,17 +79,23 @@ namespace Flyt
             if (connectionString == null)
                 throw new ArgumentNullException(nameof(connectionString));
 
-            using (FlytDbContext context = new FlytDbContext(connectionString))
+            using FlytDbContext context = new(connectionString);
+            try
             {
                 List<Driver> driversToSave = context.Drivers
-                                                .Where(d1 => drivers.Select(d => d.Id)
-                                                                    .Contains(d1.Id)).ToList();
+                                            .Where(d1 => drivers.Select(d => d.Id)
+                                                                .Contains(d1.Id)).ToList();
                 foreach (Driver driver in drivers)
                 {
-                    Driver driverToSave = driversToSave.Single(d1 => d1.Id ==driver.Id)
+                    Driver driverToSave = driversToSave.Single(d1 => d1.Id == driver.Id);
                     driverToSave.Name = driver.Name;
                 }
-                
+                return 0;
+            }
+            catch
+            {
+                return 1;
+
             }
         }
 
@@ -96,15 +104,13 @@ namespace Flyt
             if (connectionString == null)
                 throw new ArgumentNullException(nameof(connectionString));
 
-            using (FlytDbContext context = new FlytDbContext(connectionString))
-            {
-                var test = context.Stoppoints
-                               .Include(sp => sp.Ignores)
-                               .Where(sp => sp.Ignores == null || sp.Ignores.Any(i => i.StartDate <  DateTime.Now && i.EndDate > DateTime.Now) == false)
-                               .Include(sp => sp.Adresses.Where(spa => spa.StartDate < DateTime.Now && spa.EndDate > DateTime.Now))
-                               .ThenInclude(spa => spa.Adress).ToList();
-                return test;
-            }
+            using FlytDbContext context = new(connectionString);
+            var test = context.Stoppoints
+                           .Include(sp => sp.Ignores)
+                           .Where(sp => sp.Ignores == null || sp.Ignores.Any(i => i.StartDate < DateTime.Now && i.EndDate > DateTime.Now) == false)
+                           .Include(sp => sp.Adresses.Where(spa => spa.StartDate < DateTime.Now && spa.EndDate > DateTime.Now))
+                           .ThenInclude(spa => spa.Adress).ToList();
+            return test;
         }
 
         public int PostStoppoints(IEnumerable<Stoppoint> stoppoints)
