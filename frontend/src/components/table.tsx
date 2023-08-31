@@ -40,10 +40,16 @@ export function DriverTableRow({ driver }: { driver: Driver }) {
 }
 
 export function VehicleTableRow({ vehicle }: { vehicle: Vehicle }) {
+  const regNummer = vehicle.RegistrationNumber;
   return (
     <tr>
       <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>
         {vehicle.MaxCargo}
+      </td>
+      <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>
+        <span className='rounded border-2 border-black px-2 py-1'>
+          {`${regNummer.substring(0, 3)} ${regNummer.substring(3, 6)}`}
+        </span>
       </td>
       <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900 flex gap-2'>
         <Link
@@ -54,7 +60,7 @@ export function VehicleTableRow({ vehicle }: { vehicle: Vehicle }) {
         </Link>
         <button
           type={'button'}
-          className='inline-ml-auto rounded bg-red-500 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700'
+          className='inline-ml-auto rounded bg-red-500 px-4 py-2 text-xs font-medium text-white hover:bg-red-700'
         >
           Ta bort Fordon
         </button>
