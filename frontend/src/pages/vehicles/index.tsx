@@ -1,6 +1,5 @@
 import { PageHeader } from '@/components/pageHeader';
 import Table, {
-  DriverTableRow,
   TableBody,
   TableHeader,
   VehicleTableRow,

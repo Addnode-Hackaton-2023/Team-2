@@ -14,6 +14,8 @@ export function TableBody({ children }: { children: JSX.Element[] }) {
 }
 
 export function StopTableRow({ stop }: { stop: StopPointAdress }) {
+  const linkText = stop.StopPoint.IsRecipient ? 'Mottagarsida' : 'Donatorsida';
+  const linkRoute = stop.StopPoint.IsRecipient ? '/recipients' : '/donors';
   return (
     <tr>
       <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>
@@ -24,10 +26,10 @@ export function StopTableRow({ stop }: { stop: StopPointAdress }) {
       </td>
       <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900 flex gap-2 w-fit'>
         <Link
-          href={`/stops/${stop.StopPointAdressId}`}
+          href={`${linkRoute}/${stop.StopPointAdressId}`}
           className='inline-block ml-auto rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700'
         >
-          Länk till Stopp
+          {linkText}
         </Link>
         <button
           type={'button'}
@@ -55,7 +57,7 @@ export function SelectableStopTableRow({
         <input
           type='checkbox'
           checked={value}
-          onChange={(e) => onSelect(stop)}
+          onChange={() => onSelect(stop)}
         />
       </td>
       <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900'>

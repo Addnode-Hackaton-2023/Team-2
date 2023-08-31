@@ -6,7 +6,6 @@ import { MOCK_VEHICLES } from '@/mock/MOCK_VEHICLES';
 import { Vehicle } from '@/types/Vehicle';
 import { useMemo, useState } from 'react';
 import Table, { TableHeader, TableBody } from '@/components/table';
-import stops from '../stops';
 import { StopPointAdress } from '@/types/StopPointAdress';
 import { doTheRouting } from '@/util/routing';
 
