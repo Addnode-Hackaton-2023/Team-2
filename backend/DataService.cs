@@ -29,6 +29,68 @@ namespace Flyt
             }
         }
 
+        public IEnumerable<Vehicle> GetVehicles()
+        {
+            if (connectionString == null)
+                throw new ArgumentNullException(nameof(connectionString));
+
+            using (FlytDbContext context = new FlytDbContext(connectionString))
+            {
+                var vehicles = context.Vehicles.ToList();
+                return vehicles;
+            }
+        }
+
+        public int UpdateVehicle(IEnumerable<Vehicle> vehicles)
+        {
+            if (connectionString == null)
+                throw new ArgumentNullException(nameof(connectionString));
+
+            using (FlytDbContext context = new FlytDbContext(connectionString))
+            {
+                List<Vehicle> vehiclesToSave = context.Vehicles
+                                                .Where(v1 => vehicles.Select(v => v.Id)
+                                                                    .Contains(v1.Id)).ToList();
+                foreach (Vehicle vehicle in vehicles)
+                {
+                    Vehicle vehicleToSave = vehiclesToSave.Single(v1 => v1.Id == vehicle.Id)
+                    vehicleToSave.MaxCargo = vehicle.MaxCargo;
+                }
+                
+            }
+        }
+
+        public IEnumerable<Driver> GetDrivers()
+        {
+            if (connectionString == null)
+                throw new ArgumentNullException(nameof(connectionString));
+
+            using (FlytDbContext context = new FlytDbContext(connectionString))
+            {
+                var drivers = context.Drivers.ToList();
+                return drivers;
+            }
+        }
+
+        public int UpdateDriver(IEnumerable<Driver> drivers)
+        {
+            if (connectionString == null)
+                throw new ArgumentNullException(nameof(connectionString));
+
+            using (FlytDbContext context = new FlytDbContext(connectionString))
+            {
+                List<Driver> driversToSave = context.Drivers
+                                                .Where(d1 => drivers.Select(d => d.Id)
+                                                                    .Contains(d1.Id)).ToList();
+                foreach (Driver driver in drivers)
+                {
+                    Driver driverToSave = driversToSave.Single(d1 => d1.Id ==driver.Id)
+                    driverToSave.Name = driver.Name;
+                }
+                
+            }
+        }
+
         public IEnumerable<Stoppoint> GetActiveStoppoints()
         {
             if (connectionString == null)
