@@ -10,8 +10,8 @@ namespace Flyt
 {
     public interface IDataService
     {
-        public IEnumerable<Stoppoint> GetActiveStoppoints();
-        public int PostStoppoints(IEnumerable<StoppointDTO> stoppoints);
+        public IEnumerable<StoppointGetDTO> GetActiveStoppoints();
+        public int PostStoppoints(IEnumerable<StoppointPostDTO> stoppoints);
         public int UpdateStoppoints(IEnumerable<Stoppoint> stoppoints);
 
     }

@@ -17,13 +17,13 @@ namespace FlytAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Stoppoint>> Get()
+        public ActionResult<List<StoppointGetDTO>> Get()
         {
             return Ok(dataService.GetActiveStoppoints().ToList());
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] ICollection<StoppointDTO> stoppoints)
+        public ActionResult Post([FromBody] ICollection<StoppointPostDTO> stoppoints)
         {
             return Ok(dataService.PostStoppoints(stoppoints));
         }

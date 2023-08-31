@@ -44,14 +44,14 @@ namespace Flyt
 
             //dataService.PostStoppoints(new List<Stoppoint> { newStoppoint });
 
-            Console.WriteLine("Getting Stoppoints");
-            List<Stoppoint> z = dataService.GetActiveStoppoints().ToList();
-            foreach (Stoppoint point in z)
-            {
-                Adress stoppointAdress = point.Adresses.Single().Adress;
-                Console.WriteLine($"Id: {point.Id} - Adress: {stoppointAdress.Street}, {stoppointAdress.ZipCode} {Enum.GetName(typeof(City), stoppointAdress.City).ToUpper()} {Enum.GetName(typeof(Muncipality), stoppointAdress.Muncipality).ToUpper()}");
-            }
-            Console.WriteLine("Finished");
+            //Console.WriteLine("Getting Stoppoints");
+            //List<Stoppoint> z = dataService.GetActiveStoppoints().ToList();
+            //foreach (Stoppoint point in z)
+            //{
+            //    Adress stoppointAdress = point.Adresses.Single().Adress;
+            //    Console.WriteLine($"Id: {point.Id} - Adress: {stoppointAdress.Street}, {stoppointAdress.ZipCode} {Enum.GetName(typeof(City), stoppointAdress.City).ToUpper()} {Enum.GetName(typeof(Muncipality), stoppointAdress.Muncipality).ToUpper()}");
+            //}
+            //Console.WriteLine("Finished");
         }
 
         public static void RegisterServices()
