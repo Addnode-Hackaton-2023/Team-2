@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace Flyt.DTO
 {
-    public class StoppointDTO
+    public class StoppointGetDTO
     {
-        public int BrandId { get; set; }
-        public int AdressId { get; set; }
+        public int Id { get; set; }
+        public AdressGetDTO Adress { get; set; }
+        public BrandGetDTO Brand { get; set; }
         public bool IsRecipient { get; set; }
     }
 }

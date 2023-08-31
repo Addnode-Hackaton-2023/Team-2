@@ -9,7 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container
 builder.Services.AddScoped<IDataService, DataService>();
 builder.Services.AddControllers()
-                .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+                .AddJsonOptions(options => { options.JsonSerializerOptions.ReferenceHandler = null;
+                });
+
 builder.Services.AddDbContext<FlytDbContext>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
