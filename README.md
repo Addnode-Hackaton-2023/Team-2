@@ -20,9 +20,9 @@ Här skall sista commiten till repot vara gjord och den muntliga presentationen 
 * Gå igenom agendan
 * Gå varvet runt och presentera er enligt frågorna nedan.
 * Välj en teamleader för erat team.
-  - Teamleader - <namn här>
+  - Teamleader - Viktor Jonson (med god hjälp från teamet)
 * Välj ett namn för erat team. Detta skall även skrivas på dörren.
-  - Namn - <namn här>
+  - Namn - **Team FLYT**
  
 Ett tips till teamet är att gå varvet runt och låta alla presentera sig, ni kan utgå från detta ifall ni vill:
 * Vem är du?
