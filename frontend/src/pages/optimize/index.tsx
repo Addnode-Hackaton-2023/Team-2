@@ -12,6 +12,8 @@ import { doTheRouting } from '@/util/routing';
 export default function Optimize() {
   const [selectedVehicles, setSelectedVehicles] = useState<Vehicle[]>([]);
   const [selectedStops, setSelectedStops] = useState<StopPointAdress[]>([]);
+  const [graphics, setGraphics] = useState<any[]>();
+  const [hasGraphics, setHasGraphics] = useState(false);
 
   const STOPS = useMemo(() => {
     return MOCK_ADDRESSES.filter((stop) => !stop.StopPoint.IsRecipient);
@@ -24,7 +26,9 @@ export default function Optimize() {
   function addSelectedStop(stop: StopPointAdress) {
     if (selectedStops.includes(stop)) {
       setSelectedStops(
-        selectedStops.filter((s) => s.StopPointAdressId !== s.StopPointAdressId)
+        selectedStops.filter(
+          (s) => s.StopPointAdressId !== stop.StopPointAdressId
+        )
       );
       return;
     }
@@ -46,6 +50,8 @@ export default function Optimize() {
   function isVehicleSelected(vehicle: Vehicle) {
     return selectedVehicles.includes(vehicle);
   }
+
+  console.log('graphics length', graphics && graphics.length);
   return (
     <div>
       <div className='grid grid-cols-2 relative'>
@@ -128,13 +134,17 @@ export default function Optimize() {
               <div className='flex w-full items-center justify-center mt-4 mb-8'>
                 <button
                   type={'button'}
-                  onClick={() =>
-                    doTheRouting({
+                  onClick={async () => {
+                    const g = await doTheRouting({
                       stops: selectedStops,
                       recipients: RECIPIENTS,
                       vehicles: selectedVehicles,
-                    })
-                  }
+                    });
+
+                    console.log('in button click', g);
+                    setGraphics(g);
+                    setHasGraphics(true);
+                  }}
                   className={`rounded bg-indigo-500 px-4 py-2 text-lg font-medium text-white hover:bg-indigo-700`}
                 >
                   Knappen
@@ -144,7 +154,7 @@ export default function Optimize() {
           )}
         </div>
         <div className='h-full'>
-          <Map />
+          <Map enableGraphics={hasGraphics} graphics={graphics} />
         </div>
       </div>
     </div>
