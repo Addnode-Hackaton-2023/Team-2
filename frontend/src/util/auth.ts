@@ -4,7 +4,7 @@ const clientId = 'yz7QjY5Gr8K7SlwS';
 const redirect = 'http://localhost:3000/login/oauth';
 
 export const temporaryToken =
-  '0zgWp24i1U_k6o8-X3q2cuZDS3hH6u4dDRb_Tr28hUAbI4bc7jSMmuEhrkCFeRAV4rsPSSpT0AZZpUrBs_yDAGiZw3TCF7BSdZy7nH-A3YmUbupoLAXCQhSXF63VVnABDjIFFk2SO2Q2yExtmGZipWWtRATvsih4YgxkWmfZDGt5Lud24ZkxLA8XaNjm1hAinMuDoEVLHwPEz2nU2ZMyQsXn0XE8GMv9D23jISMBMz4';
+  'OxArzIqi2xIWwd0v-fsKVVwO4b2C2nKhznsxapj4-K89CAjUPe1uJCJfKI8Ym3YC-G6vGfASlXkAu2CUyA7M4-WcSpYvqb6Isu2RpUB9ZU05a48xJNamUUeCzL-wyegr93G-kbECytjjn77_IU5ai89c3KLpzzMPlmDlg2DZwLWx5e-xLKrQx6IgDx1Ss80AIOKdy8BDwF81lwJxIhKECDLEAhjrC6rXaTsd5sFXQ7A';
 export const oauthHref = `https://www.arcgis.com/sharing/rest/oauth2/authorize?client_id=${clientId}&response_type=token&expiration=20160&redirect_uri=${redirect}`;
 
 export async function getToken() {

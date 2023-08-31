@@ -11,6 +11,9 @@ export default function Home() {
         FLYT
       </h1>
       <div>Fleet Management Tool™</div>
+      <h3 className='text-2xl'>
+        <b>F</b>ood <b>L</b>ogistics <b>Y</b>ou <b>T</b>rust
+      </h3>
     </main>
   );
 }
