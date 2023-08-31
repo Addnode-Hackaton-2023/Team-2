@@ -10,7 +10,6 @@ export function Sidebar() {
           <SidebarRow text='Dashboard' url={'/'} />
           <SidebarRow text='Förare' url={'/drivers'} />
           <SidebarRow indent text='Boka förare' url={'/calendar'} />
-          <SidebarRow text='Karta' url={'/map'} />
           <SidebarRow text='Donator' url={'/donors'} />
           <SidebarRow indent text='Ny Donator' url={'/donors/add'} />
           <SidebarRow text='Mottagare' url={'/recipients'} />
