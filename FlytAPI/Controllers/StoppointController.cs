@@ -22,6 +22,12 @@ namespace FlytAPI.Controllers
             return Ok(dataService.GetActiveStoppoints().ToList());
         }
 
+        [HttpGet("GetAll")]
+        public ActionResult<List<StoppointGetDTO>> GetAll()
+        {
+            return Ok(dataService.GetAllStoppoints().ToList());
+        }     
+
         [HttpPost]
         public ActionResult Post([FromBody] ICollection<StoppointPostDTO> stoppoints)
         {
