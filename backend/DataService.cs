@@ -1,6 +1,7 @@
 ﻿using Flyt.DTO;
 using Flyt.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,26 +46,50 @@ namespace Flyt
                                .ThenInclude(spa => spa.Adress)
                                .Include(sp => sp.Brand)
                                .ToList();
-                List<StoppointGetDTO> DTOStoppoints = new List<StoppointGetDTO>();
-                DTOStoppoints = stoppoints.Select(sp => new StoppointGetDTO()
-                {
-                    Id = sp.Id,
-                    IsRecipient = sp.IsRecipient,
-                    Adress = sp.Adresses.Select(a => new AdressGetDTO {
-                        Id = a.AdressId ?? 0,
-                        City = a.Adress.City,
-                        Muncipality = a.Adress.Muncipality,
-                        Street = a.Adress.Street,
-                        ZipCode = a.Adress.ZipCode
-                    }).First(),
-                    Brand = new BrandGetDTO
-                    {
-                        Id = sp.BrandId,
-                        Name = sp.Brand.Name
-                    }
-                }).ToList(); 
-                return DTOStoppoints;
+                return GetDTOStoppoints(stoppoints);
             }
+        } 
+        
+        public IEnumerable<StoppointGetDTO> GetAllStoppointsQuery()
+        {
+            if (connectionString == null)
+                throw new ArgumentNullException(nameof(connectionString));
+
+            using (FlytDbContext context = new FlytDbContext(connectionString))
+            {
+                var stoppoints = context.Stoppoints
+                               .Include(sp => sp.Ignores)
+                               .Include(sp => sp.Adresses.Where(spa => spa.StartDate < DateTime.Now && spa.EndDate > DateTime.Now))
+                               .ThenInclude(spa => spa.Adress)
+                               .Include(sp => sp.Brand)
+                               .ToList();
+
+                return GetDTOStoppoints(stoppoints);
+            }
+        }
+
+        List<StoppointGetDTO> GetDTOStoppoints(IEnumerable<Stoppoint> stoppoints)
+        {
+            List<StoppointGetDTO> DTOStoppoints = new List<StoppointGetDTO>();
+            DTOStoppoints = stoppoints.Select(sp => new StoppointGetDTO()
+            {
+                Id = sp.Id,
+                IsRecipient = sp.IsRecipient,
+                Adress = sp.Adresses.Select(a => new AdressGetDTO
+                {
+                    Id = a.AdressId ?? 0,
+                    City = a.Adress.City,
+                    Muncipality = a.Adress.Muncipality,
+                    Street = a.Adress.Street,
+                    ZipCode = a.Adress.ZipCode
+                }).First(),
+                Brand = new BrandGetDTO
+                {
+                    Id = sp.BrandId,
+                    Name = sp.Brand.Name
+                }
+            }).ToList();
+            return DTOStoppoints;
         }
 
         public int PostStoppoints(IEnumerable<StoppointPostDTO> stoppoints)
