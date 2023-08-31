@@ -53,7 +53,7 @@ export function VehicleTableRow({ vehicle }: { vehicle: Vehicle }) {
       </td>
       <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900 flex gap-2'>
         <Link
-          href={`/vehicle/${vehicle.VehicleId}`}
+          href={`/vehicles/${vehicle.VehicleId}`}
           className='inline-block ml-auto rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700'
         >
           Länk till Fordon

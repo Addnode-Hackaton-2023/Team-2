@@ -8,13 +8,14 @@ export function Sidebar() {
         <SidebarLogo />
         <ul className='mt-6 space-y-1'>
           <SidebarRow text='Dashboard' url={'/'} />
-          <SidebarRow text='Förare' url={'/driver'} />
+          <SidebarRow text='Förare' url={'/drivers'} />
           <SidebarRow indent text='Boka förare' url={'/calendar'} />
           <SidebarRow text='Karta' url={'/map'} />
-          <SidebarRow text='Mottagare' url={'/recipient'} />
-          <SidebarRow indent text='Ny Mottagare' url={'/recipient/add'} />
-          <SidebarRow text='Fordon' url={'/vehicle'} />
-          <SidebarRow text='Stopp' url={'/stops'} />
+          <SidebarRow text='Donator' url={'/donors'} />
+          <SidebarRow indent text='Ny Donator' url={'/donors/add'} />
+          <SidebarRow text='Mottagare' url={'/recipients'} />
+          <SidebarRow indent text='Ny Mottagare' url={'/recipients/add'} />
+          <SidebarRow text='Fordon' url={'/vehicles'} />
           <SidebarRow indent text='Optimera stopp' url={'/optimize'} />
         </ul>
       </div>
