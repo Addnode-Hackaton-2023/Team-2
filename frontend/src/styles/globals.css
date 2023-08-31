@@ -22,3 +22,13 @@ body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-start-rgb));
 }
+
+
+[data-disabled] {
+  background-color: #eee;
+  cursor: not-allowed;
+}
+
+[data-disabled]:hover {
+  background-color: unset !important;
+}

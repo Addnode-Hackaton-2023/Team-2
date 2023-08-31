@@ -13,9 +13,9 @@ export function Sidebar() {
           <SidebarRow text='Karta' url={'/map'} />
           <SidebarRow text='Mottagare' url={'/recipient'} />
           <SidebarRow indent text='Ny Mottagare' url={'/recipient/add'} />
-          <SidebarRow text='Affär' url={'/store'} />
           <SidebarRow text='Fordon' url={'/vehicle'} />
           <SidebarRow text='Stopp' url={'/stops'} />
+          <SidebarRow indent text='Optimera stopp' url={'/optimize'} />
         </ul>
       </div>
       <SidebarUser avatar='' email='user@example.com' name='Example User' />
@@ -37,7 +37,7 @@ function SidebarRow({ text, url, indent }: SidebarRow) {
       <Link
         href={url}
         className={`block rounded-lg ${bg} px-4 py-2 text-sm font-medium text-gray-700 ${
-          indent ? 'pl-4' : 'pl-0'
+          indent ? 'pl-6' : 'pl-2'
         }`}
       >
         {text}

@@ -11,9 +11,6 @@ namespace Flyt.Configuration
         {
             builder.HasKey(a => a.Id);
 
-            builder.Property(a => a.Text) 
-                .IsRequired();
-
             builder.HasMany(a => a.StoppointAdresses)
                 .WithOne(sa => sa.Adress)
                 .HasForeignKey(a => a.AdressId);

@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import { StopPointAdress } from '@/types/StopPointAdress';
 import { Brand } from '@/types/Brand';
 import { useMemo } from 'react';
+import { PageHeader } from '@/components/pageHeader';
 
 export const getServerSideProps: GetServerSideProps<{
   stops: StopPointAdress[];
@@ -38,7 +39,10 @@ export default function StoresPage({
 
   return (
     <div className='p-8'>
-      <h1 className='text-3xl py-8'>Affärer</h1>
+      <PageHeader
+        title='Upphämtningsplatser'
+        subtitle='Denna sida listar alla de upphämtningsplatser som finns registrerade'
+      />
       <Table>
         <thead>
           <tr>
@@ -54,23 +58,25 @@ export default function StoresPage({
         </TableBody>
       </Table>
 
-      <h1 className='text-3xl py-8'>Mottagare</h1>
-      <Table>
-        <thead>
-          <tr>
-            <TableHeader name={'Brand'} />
-            <TableHeader name={'Address'} />
-            <TableHeader name={'Åtgärder'} />
-          </tr>
-        </thead>
-        <TableBody>
-          {RECIPIENTS.map((s) => (
-            <StopTableRow key={s.StopPointAdressId} stop={s} />
-          ))}
-        </TableBody>
-      </Table>
+      <div className='bg-gray-50 my-8 p-8'>
+        <h1 className='text-3xl py-8'>Mottagare</h1>
+        <Table>
+          <thead>
+            <tr>
+              <TableHeader name={'Brand'} />
+              <TableHeader name={'Address'} />
+              <TableHeader name={'Åtgärder'} />
+            </tr>
+          </thead>
+          <TableBody>
+            {RECIPIENTS.map((s) => (
+              <StopTableRow key={s.StopPointAdressId} stop={s} />
+            ))}
+          </TableBody>
+        </Table>
+      </div>
 
-      <div>
+      <div className='bg-gray-50 my-8 p-8'>
         <h1 className='text-3xl py-8'>Lägg till ett nytt stopp</h1>
         <form onSubmit={onSubmit}>
           <div className='flex flex-col w-1/2 gap-4'>

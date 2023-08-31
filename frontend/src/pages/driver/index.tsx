@@ -1,3 +1,4 @@
+import { PageHeader } from '@/components/pageHeader';
 import Table, {
   DriverTableRow,
   TableBody,
@@ -30,7 +31,10 @@ export default function DriverPage({
 
   return (
     <div className='p-8'>
-      <h1 className='text-3xl py-8'>Förare</h1>
+      <PageHeader
+        title='Förare'
+        subtitle='Här listas alla förare som finns registrerade i applikationen'
+      />
       <Table>
         <thead>
           <tr>
@@ -44,7 +48,7 @@ export default function DriverPage({
           ))}
         </TableBody>
       </Table>
-      <div>
+      <div className='bg-gray-50 my-8 p-8'>
         <h1 className='text-3xl py-8'>Lägg till ny förare</h1>
         <form onSubmit={onSubmit}>
           <div className='flex'>
