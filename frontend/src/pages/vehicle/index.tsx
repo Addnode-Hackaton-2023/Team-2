@@ -40,6 +40,7 @@ export default function VehiclePage({
         <thead>
           <tr>
             <TableHeader name={'Maxlast'} />
+            <TableHeader name={'Regnummer'} />
           </tr>
         </thead>
         <TableBody>

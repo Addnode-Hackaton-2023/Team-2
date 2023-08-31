@@ -1,6 +1,5 @@
 //import { addressToLocations } from "esri/rest/locator/addressToLocations";
 import { Adress } from '@/types/Adress';
-import { loadModules } from 'esri-loader';
 
 const url =
   'https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer';
@@ -28,6 +27,11 @@ export type Address = {
   attribution_license: string;
   attribution_url: string;
 };
+const spatialReference = {
+    "latestWkid": 3857,
+    "wkid": 102100
+}
+
 
 const addresses = [
   {

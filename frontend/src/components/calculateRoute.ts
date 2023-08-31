@@ -5,15 +5,16 @@ let depotLocation: any;
   let routeLayer: any;
   let deliveryLayer: any;
 
+const spatialReference = {
+    "latestWkid": 3857,
+    "wkid": 102100
+}
+
 export const start = async (map:any, locations:any, mapView: any) => {
     await createGraphicLayer();
     map.addMany([depotLayer,routeLayer,deliveryLayer]);
     depotLocation = locations[0].location;
-   const sp =   {
-    spatialReference: {
-        "wkid": mapView.spatialReference.wkid
-      }
-    };
+   const sp = spatialReference;
     showDepot(depotLocation);
     getfleetRoutes(locations,sp);
   }
@@ -38,18 +39,13 @@ const  showDepot = async(point:any) => {
     depotLayer.add(
       new Graphic({
         attributes: {
-          Trucks: 2,
-          Deliveries: 6
+          Trucks: 2
         },
         geometry: point,
         symbol: {
           type: "web-style",
           name: "bus-station",
           styleName: "Esri2DPointSymbolsStyle"
-        },
-        popupTemplate: {
-          title: "Depot",
-          content: `Trucks: 2<br>Deliveries: 6<br>Longitude: ${longitude}°<br>Latitude: ${latitude}°`
         }
       })
     );
@@ -79,22 +75,16 @@ const  showDepot = async(point:any) => {
           attributes: {
             Name: "Route 1",
             Description: "vehicle 1",
-            StartDepotName: "Bay Cities Kitchens and Appliances",
-            EndDepotName: "Bay Cities Kitchens and Appliances",
-            Capacities: "4",
-            MaxOrderCount: 3,
-            MaxTotalTime: 60
+            StartDepotName: "Stockholmsvägen 1, 182 78 Stocksund",
+            EndDepotName: "Värmevägen 1A, 177 57 Järfälla",
           }
         },
         {
           attributes: {
             Name: "Route 2",
             Description: "vehicle 2",
-            StartDepotName: "Bay Cities Kitchens and Appliances",
-            EndDepotName: "Bay Cities Kitchens and Appliances",
-            Capacities: "4",
-            MaxOrderCount: 3,
-            MaxTotalTime: 60
+            StartDepotName: "Stockholmsvägen 1, 182 78 Stocksund",
+            EndDepotName: "Bussens väg 5, 122 43 Enskede",
           }
         }
       ]
