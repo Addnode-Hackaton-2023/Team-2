@@ -1,4 +1,5 @@
-﻿using Flyt.Models;
+﻿using Flyt.DTO;
+using Flyt.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace Flyt
     public interface IDataService
     {
         public IEnumerable<Stoppoint> GetActiveStoppoints();
-        public int PostStoppoints(IEnumerable<Stoppoint> stoppoints);
+        public int PostStoppoints(IEnumerable<StoppointDTO> stoppoints);
         public int UpdateStoppoints(IEnumerable<Stoppoint> stoppoints);
 
     }

@@ -1,4 +1,5 @@
-﻿using Flyt.Models;
+﻿using Flyt.DTO;
+using Flyt.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -40,12 +41,14 @@ namespace Flyt
                                .Include(sp => sp.Ignores)
                                .Where(sp => sp.Ignores == null || sp.Ignores.Any(i => i.StartDate <  DateTime.Now && i.EndDate > DateTime.Now) == false)
                                .Include(sp => sp.Adresses.Where(spa => spa.StartDate < DateTime.Now && spa.EndDate > DateTime.Now))
-                               .ThenInclude(spa => spa.Adress).ToList();
+                               .ThenInclude(spa => spa.Adress)
+                               .Include(sp => sp.Brand)
+                               .ToList();
                 return test;
             }
         }
 
-        public int PostStoppoints(IEnumerable<Stoppoint> stoppoints)
+        public int PostStoppoints(IEnumerable<StoppointDTO> stoppoints)
         {
             if (connectionString == null)
                 throw new ArgumentNullException(nameof(connectionString));
@@ -54,9 +57,19 @@ namespace Flyt
             {
                 try
                 {
-                    foreach (Stoppoint stoppoint in stoppoints)
+                    foreach (StoppointDTO stoppoint in stoppoints)
                     {
-                        context.Stoppoints.Add(stoppoint);
+                        Stoppoint newStoppoint = new Stoppoint()
+                        {
+                            Id = 0,
+                            BrandId = stoppoint.BrandId,
+                            Adresses = new List<StoppointAdress>() 
+                            { new StoppointAdress 
+                                { Id = 0, AdressId = stoppoint.AdressId } 
+                            },
+                            IsRecipient = stoppoint.IsRecipient
+                        };
+                        context.Stoppoints.Add(newStoppoint);
                     }
                     context.SaveChanges();
                 }
