@@ -20,7 +20,7 @@ public class FlytDbContext : DbContext
 
     public FlytDbContext()
     {
-        ConnectionString = @"***REMOVED***";
+        ConnectionString = @"";
     }
 
     public FlytDbContext(string connectionString)

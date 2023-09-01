@@ -17,7 +17,7 @@ namespace Flyt
 
         public DataService()
         {
-            this.connectionString = @"***REMOVED***";
+            this.connectionString = @"";
             Initialize();
         }
 
